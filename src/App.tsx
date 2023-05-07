@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 import PostList from './components/PostList';
 import axios from 'axios';
-import { IPost, IUser } from './types/post';
+import { IPost, IUser } from './types';
 import { TOKEN } from './utils/token';
+import UserList from './components/UserList';
+import AuthUser from './components/AuthUser';
 
 function App() {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [posts, setPosts] = useState<IPost[]>([]);
+  const [users, setUsers] = useState<IUser[]>([]);
   const [user, setUser] = useState<IUser>();
 
   const getPosts = async () => {
@@ -17,6 +20,15 @@ function App() {
       },
     });
     setPosts(data.payload.posts.data);
+  };
+
+  const getUsers = async () => {
+    const { data } = await axios.get(`http://localhost:8080/v1/users`, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    });
+    setUsers(data.payload.users.data);
   };
 
   const getUser = async () => {
@@ -30,8 +42,9 @@ function App() {
 
   useEffect(() => {
     getPosts();
+    getUsers();
     getUser();
-  }, []);
+  }, [TOKEN]);
 
   useEffect(() => {
     // Connect to the Socket.IO server
@@ -64,6 +77,19 @@ function App() {
       }
     );
 
+    socket.on(
+      'likeCountUpdated',
+      (data: { postId: String; updatedCount: number }) => {
+        setPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post._id === data.postId
+              ? { ...post, likeCount: data.updatedCount }
+              : post
+          )
+        );
+      }
+    );
+
     // Clean up the event listeners on component unmount
     return () => {
       socket.off('commentCountUpdated');
@@ -72,8 +98,9 @@ function App() {
   return (
     <>
       <h1>Hyve Playground - Web</h1>
-      <h2>Logged In as {user?.username}</h2>
+      {user && <AuthUser user={user} />}
       <PostList posts={posts} />
+      <UserList users={users} />
     </>
   );
 }

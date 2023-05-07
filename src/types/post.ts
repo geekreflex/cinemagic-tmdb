@@ -1,3 +1,5 @@
+import { IUser } from './user';
+
 export interface IPost {
   _id: string;
   slug: string;
@@ -11,9 +13,4 @@ export interface IPost {
   isEdited: boolean;
   isSaved: boolean;
   isLiked: boolean;
-}
-
-export interface IUser {
-  username: string;
-  profilePhotoUrl: string;
 }
