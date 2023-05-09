@@ -1,14 +1,21 @@
+import { useQuery } from '@tanstack/react-query';
 import { IPost } from '../types/post';
+import { getLatestPosts } from '../api/post';
+import { Link } from 'react-router-dom';
 
-interface IPostList {
-  posts: IPost[];
-}
+const PostList = () => {
+  const { data, isLoading, isError, error } = useQuery<void, unknown, IPost[]>({
+    queryKey: ['lastest-posts'],
+    queryFn: () => getLatestPosts(),
+  });
 
-const PostList = ({ posts }: IPostList) => {
+  if (isLoading) <p>Loading...</p>;
+  if (isError) <p>{JSON.stringify(error)}</p>;
+
   return (
     <div className="posts">
-      {posts &&
-        posts.map((post, index) => (
+      {data &&
+        data.map((post, index) => (
           <div key={index} className="post">
             <div>
               <span>By: {post.author.username}</span>
@@ -18,7 +25,9 @@ const PostList = ({ posts }: IPostList) => {
             <br />
 
             <small>Post Slug: {post.slug}</small>
-            {post.title && <h3>{post.title}</h3>}
+            <Link to={`/posts/${post.slug}`}>
+              {post.title && <h3>{post.title}</h3>}
+            </Link>
             <p>{post.content}</p>
             <div className="stats">
               <span>Comments: {post.commentCount}</span>
