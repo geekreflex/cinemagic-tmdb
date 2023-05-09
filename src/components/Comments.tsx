@@ -10,6 +10,7 @@ interface IPostComments {
 const Comments = ({ postId }: IPostComments) => {
   const { data, isLoading } = useQuery<void, unknown, IComment[]>({
     queryKey: ['post', postId, 'comments'],
+    enabled: postId != null,
     queryFn: () => getPostComments(postId),
   });
 
@@ -17,6 +18,7 @@ const Comments = ({ postId }: IPostComments) => {
 
   return (
     <Wrap>
+      {!data?.length && <p>No comments</p>}
       {data &&
         data.map((comment) => (
           <div key={comment._id} className="comment">

@@ -3,11 +3,16 @@ import Post from './components/Post';
 import PostList from './components/PostList';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AuthUser from './components/AuthUser';
+import CreatePost from './views/CreatePost';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <PostList />,
+  },
+  {
+    path: '/new',
+    element: <CreatePost />,
   },
   {
     path: '/posts/:slug',

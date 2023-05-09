@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { BASE_URL, CONFIG } from '../utils/constants';
+import { IPostPayload } from '../types';
 
 export const getLatestPosts = async () => {
   const { data } = await axios.get(`${BASE_URL}/posts`, CONFIG);
@@ -17,4 +18,9 @@ export const getPostComments = async (postId: string) => {
     CONFIG
   );
   return data.payload.comments;
+};
+
+export const createPost = async (payload: IPostPayload) => {
+  const { data } = await axios.post(`${BASE_URL}/posts`, payload, CONFIG);
+  return data.payload;
 };

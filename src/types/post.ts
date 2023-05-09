@@ -14,3 +14,8 @@ export interface IPost {
   isSaved: boolean;
   isLiked: boolean;
 }
+
+export interface IPostPayload {
+  title: string;
+  content: string;
+}
