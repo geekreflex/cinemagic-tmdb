@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import Post from './components/Post';
 import PostList from './components/PostList';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import AuthUser from './components/AuthUser';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ function App() {
   return (
     <div>
       <Container>
+        <AuthUser />
         <RouterProvider router={router} />
       </Container>
     </div>

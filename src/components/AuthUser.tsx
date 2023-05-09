@@ -1,20 +1,27 @@
+import { useQuery } from '@tanstack/react-query';
 import { IUser } from '../types';
+import { geAuthtUser } from '../api/user';
 
-interface IAuthUserProps {
-  user: IUser;
-}
-const AuthUser = ({ user }: IAuthUserProps) => {
+const AuthUser = () => {
+  const { data, isLoading, isError, error } = useQuery<void, unknown, IUser>({
+    queryKey: ['auth-user'],
+    queryFn: () => geAuthtUser(),
+  });
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>{JSON.stringify(error)}</p>;
+
   return (
     <div className="auth-user">
       <div className="user">
-        <small>User ID: {user._id}</small>
+        <small>User ID: {data._id}</small>
         <br />
-        {user.isFollower && <small>Follows you</small>}
-        <h4 key={user._id}>{user.fullName}</h4>
-        <small>@{user.username}</small>
+        {data.isFollower && <small>Follows you</small>}
+        <h4 key={data._id}>{data.fullName}</h4>
+        <small>@{data.username}</small>
         <div className="follow-count">
-          <small>Followers: {user.followerCount}</small>
-          <small>Following: {user.followingCount}</small>
+          <small>Followers: {data.followerCount}</small>
+          <small>Following: {data.followingCount}</small>
         </div>
       </div>
     </div>
