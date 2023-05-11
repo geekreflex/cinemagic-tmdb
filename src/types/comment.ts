@@ -9,6 +9,7 @@ export interface IComment {
   likeCount: number;
   saveCount: number;
   isEdited: boolean;
+  isOwner: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

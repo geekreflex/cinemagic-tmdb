@@ -13,9 +13,22 @@ export interface IPost {
   isEdited: boolean;
   isSaved: boolean;
   isLiked: boolean;
+  isOwner: boolean;
 }
 
 export interface IPostPayload {
   title: string;
   content: string;
+}
+export interface IPagination {
+  currentPage: number;
+  lastPage: number;
+  prevPage: number | null;
+  nextPage: number | null;
+  total: number;
+}
+
+export interface IPostPaginated {
+  data: IPost[];
+  meta: IPagination;
 }

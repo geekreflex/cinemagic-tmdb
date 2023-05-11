@@ -8,4 +8,5 @@ export interface IUser {
   followingCount: number;
   isFollowing: boolean;
   isFollower: boolean;
+  isUser: boolean;
 }

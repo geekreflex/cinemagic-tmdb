@@ -22,8 +22,22 @@ const Comments = ({ postId }: IPostComments) => {
       {data &&
         data.map((comment) => (
           <div key={comment._id} className="comment">
-            <small>By: {comment.author.username}</small>
+            <div className="spaced">
+              <div>
+                <small>By: {comment.author.username}</small>
+                <small>Comment ID: {comment._id}</small>
+              </div>
+              {comment.isOwner && <small>Owner</small>}
+            </div>
             <p>{comment.content}</p>
+            <div className="stats">
+              <span className={comment.isLiked ? 'liked' : ''}>
+                Likes: {comment.likeCount}
+              </span>
+              <span className={comment.isSaved ? 'saved' : ''}>
+                Save: {comment.saveCount}
+              </span>
+            </div>
           </div>
         ))}
     </Wrap>
@@ -39,6 +53,10 @@ const Wrap = styled.div`
     border: 1px solid #999;
     padding: 10px;
     border-radius: 4px;
+  }
+
+  .stats {
+    display: flex;
   }
 `;
 export default Comments;

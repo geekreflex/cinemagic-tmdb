@@ -61,11 +61,12 @@ h1 {
 .stats span {
   display: flex;
   align-items: center;
+  border: 2px solid transparent;
 }
 
 .liked,
 .saved {
-  border: 2px solid #999;
+  border: 2px solid #999 !important;
   display: flex;
   padding: 3px 5px;
 }
@@ -109,4 +110,25 @@ button {
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+}
+
+.spaced {
+  display: flex;
+  justify-content: space-between;
+}
+
+.owner-edit {
+  display: flex;
+  gap: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.pagination button {
+  width: 200px;
+  padding: 10px;
 }

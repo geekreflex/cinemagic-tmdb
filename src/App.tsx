@@ -2,8 +2,8 @@ import { styled } from 'styled-components';
 import Post from './components/Post';
 import PostList from './components/PostList';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import AuthUser from './components/AuthUser';
 import CreatePost from './views/CreatePost';
+import User from './views/User';
 
 const router = createBrowserRouter([
   {
@@ -18,13 +18,16 @@ const router = createBrowserRouter([
     path: '/posts/:slug',
     element: <Post />,
   },
+  {
+    path: '/user/:username',
+    element: <User />,
+  },
 ]);
 
 function App() {
   return (
     <div>
       <Container>
-        <AuthUser />
         <RouterProvider router={router} />
       </Container>
     </div>
@@ -39,7 +42,6 @@ function wait(duration: number) {
 const Container = styled.div`
   max-width: 1000px;
   margin: 0 auto;
-  padding: 50px 20px;
 `;
 
 export default App;

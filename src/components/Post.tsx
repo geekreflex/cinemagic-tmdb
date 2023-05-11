@@ -19,13 +19,16 @@ const Post = () => {
     <div>
       <Link to="/">Home</Link>
       <div className="post">
-        <div>
+        <div className="spaced">
           <span>By: {data.author.username}</span>
-          {data.isEdited && <span className="edited">Edited</span>}
+          <div className="owner-edit">
+            {data.isOwner && <small>Owner</small>}
+            {data.isEdited && <small>Edited</small>}
+          </div>
         </div>
+
         <small>Post ID: {data._id}</small>
         <br />
-
         <small>Post Slug: {data.slug}</small>
         {data.title && <h3>{data.title}</h3>}
         <p>{data.content}</p>
