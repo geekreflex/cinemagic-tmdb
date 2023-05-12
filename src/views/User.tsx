@@ -20,6 +20,11 @@ const Profile = () => {
 
   return (
     <Wrap>
+      {user.coverPhotoUrl && (
+        <div className="cover-photo">
+          <img src={user.coverPhotoUrl} />
+        </div>
+      )}
       <div className="main">
         <div className="profile-photo">
           <img src={user.profilePhotoUrl} />
@@ -54,12 +59,26 @@ const Wrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   .main {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 50px;
+  }
+  .cover-photo {
+    flex: 1;
+    height: 200px;
+    overflow: hidden;
+    margin-bottom: 30px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
   }
   .profile-photo {
     width: 100px;
