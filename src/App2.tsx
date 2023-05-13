@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
-import PostList from './components/PostList';
+import PostList from './_components/PostList';
 import axios from 'axios';
 import { IPost, IUser } from './types';
 import { TOKEN } from './utils/token';
-import UserList from './components/UserList';
-import AuthUser from './components/AuthUser';
+import UserList from './_components/UserList';
+import AuthUser from './_components/AuthUser';
 
 function App() {
   const [socket, setSocket] = useState<Socket | null>(null);

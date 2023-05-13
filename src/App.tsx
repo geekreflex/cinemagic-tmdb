@@ -1,35 +1,21 @@
-import { styled } from 'styled-components';
-import Post from './components/Post';
-import PostList from './components/PostList';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import CreatePost from './views/CreatePost';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import User from './views/User';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <PostList />,
-  },
-  {
-    path: '/new',
-    element: <CreatePost />,
-  },
-  {
-    path: '/posts/:slug',
-    element: <Post />,
-  },
-  {
-    path: '/user/:username',
-    element: <User />,
-  },
-]);
+import Home from './views/Home';
+import NewPost from './views/NewPost';
+import Header from './components/Header';
 
 function App() {
   return (
     <div>
-      <Container>
-        <RouterProvider router={router} />
-      </Container>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/:name" element={<User />} />
+          <Route path="/:name/:post" element={<User />} />
+          <Route path="/new" element={<NewPost />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
@@ -38,10 +24,5 @@ function App() {
 function wait(duration: number) {
   return new Promise((resolve) => setTimeout(resolve, duration));
 }
-
-const Container = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-`;
 
 export default App;

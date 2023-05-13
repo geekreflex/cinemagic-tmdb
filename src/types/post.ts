@@ -1,3 +1,4 @@
+import { ICommunity } from './community';
 import { IUser } from './user';
 
 export interface IPost {
@@ -9,6 +10,8 @@ export interface IPost {
   likeCount: number;
   saveCount: number;
   author: IUser;
+  community: ICommunity;
+  isCommunityPost: boolean;
   createdAt: Date;
   isEdited: boolean;
   isSaved: boolean;

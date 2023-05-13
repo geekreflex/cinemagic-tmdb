@@ -1,21 +1,24 @@
-import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-const Layout = () => {
+interface LayoutProp {
+  children: JSX.Element;
+}
+
+const Layout = ({ children }: LayoutProp) => {
   return (
-    <div>
-      <div>
-        <Link to="/">Home</Link>
-      </div>
-      <Container></Container>
-    </div>
+    <Wrap>
+      <Container>
+        <div>{children}</div>
+      </Container>
+    </Wrap>
   );
 };
 
-const Container = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 50px 20px;
-`;
-
 export default Layout;
+
+const Wrap = styled.div``;
+export const Container = styled.div`
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+`;

@@ -13,6 +13,17 @@ export const getLatestPosts = async (page: number) => {
   return data.payload.posts;
 };
 
+export const getTrendingPosts = async (page: number) => {
+  const { data } = await axios.get(`${BASE_URL}/posts/trending`, {
+    ...CONFIG,
+    params: {
+      page: page,
+      limit: 20,
+    },
+  });
+  return data.payload.posts;
+};
+
 export const getPost = async (slug: string | undefined) => {
   const { data } = await axios.get(`${BASE_URL}/posts/${slug}`, CONFIG);
   return data.payload.post;
