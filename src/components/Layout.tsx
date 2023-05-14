@@ -19,6 +19,6 @@ export default Layout;
 const Wrap = styled.div``;
 export const Container = styled.div`
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 700px;
   width: 100%;
 `;

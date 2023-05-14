@@ -17,12 +17,14 @@ const TrendingPosts = () => {
     keepPreviousData: true,
   });
 
-  if (isLoading) <p>Loading...</p>;
-  if (isError) <p>Error occured</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error occured</p>;
 
   return (
     <Wrap>
-      {posts && posts.data.map((post) => <Post key={post._id} post={post} />)}
+      {posts.data.map((post) => (
+        <Post key={post._id} post={post} />
+      ))}
     </Wrap>
   );
 };
