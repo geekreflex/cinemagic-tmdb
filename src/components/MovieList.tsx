@@ -3,6 +3,7 @@ import { getMovies } from '../api/movies';
 import { MovieData } from '../types/movie';
 import Movie from './Movie';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { styled } from 'styled-components';
 
 interface MovieListProps {
   name: string;
@@ -33,7 +34,7 @@ const MovieList = ({ name }: MovieListProps) => {
 
   return (
     <div>
-      <div>
+      <Main>
         {movies &&
           movies?.pages?.map((page, pageIndex) => (
             <React.Fragment key={pageIndex}>
@@ -48,9 +49,15 @@ const MovieList = ({ name }: MovieListProps) => {
             {isFetchingNextPage ? 'Loading more...' : 'Load more'}{' '}
           </button>
         )}
-      </div>
+      </Main>
     </div>
   );
 };
 
 export default MovieList;
+
+const Main = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+`;

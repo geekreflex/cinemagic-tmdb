@@ -5,7 +5,6 @@ import MovieTuff from '../components/MovieTuff';
 const Home = () => {
   return (
     <Layout>
-      <h3>Home</h3>
       <Main>
         <MovieTuff title="Popular Movies" name="popular" />
         <MovieTuff title="Upcoming Movies" name="upcoming" />

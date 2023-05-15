@@ -16,7 +16,10 @@ const MovieTuff = ({ title, name }: MovieTuffProps) => {
   });
   return (
     <Wrap>
-      <Title>{title}</Title>
+      <TopSect>
+        <h2>{title}</h2>
+        <div></div>
+      </TopSect>
       <Main>
         {movies &&
           movies?.results
@@ -33,5 +36,11 @@ const Wrap = styled.div``;
 const Main = styled.div`
   display: flex;
   gap: 15px;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background-color: transparent;
+  }
 `;
-const Title = styled.h2``;
+const TopSect = styled.div``;

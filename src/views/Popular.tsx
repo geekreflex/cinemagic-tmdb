@@ -1,11 +1,12 @@
+import Layout from '../components/Layout';
 import MovieList from '../components/MovieList';
 
 const Popular = () => {
   return (
-    <div>
+    <Layout>
       <h3>Popular Movies</h3>
       <MovieList name="popular" />
-    </div>
+    </Layout>
   );
 };
 
