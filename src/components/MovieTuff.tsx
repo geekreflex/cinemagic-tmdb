@@ -3,9 +3,10 @@ import { MovieData } from '../types/movie';
 import { getMovies } from '../api/movies';
 import Movie from './Movie';
 import { styled } from 'styled-components';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import { hyphen } from '../utils/hyphen';
 
 interface MovieTuffProps {
   title: string;
@@ -14,10 +15,42 @@ interface MovieTuffProps {
 
 const MovieTuff = ({ title, name }: MovieTuffProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [showLeftArrow, setShowLeftArrow] = useState<boolean>(false);
+  const [showRightArrow, setShowRightArrow] = useState<boolean>(false);
   const { data: movies } = useQuery<void, unknown, MovieData>({
     queryKey: [name],
     queryFn: () => getMovies(name),
   });
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) {
+      return;
+    }
+
+    if (container.scrollWidth > container.clientWidth) {
+      setShowLeftArrow(container.scrollLeft > 0);
+      setShowRightArrow(
+        container.scrollLeft + container.clientWidth < container.scrollWidth
+      );
+    } else {
+      setShowLeftArrow(false);
+      setShowRightArrow(false);
+    }
+
+    const handleScroll = () => {
+      setShowLeftArrow(container.scrollLeft > 0);
+      setShowRightArrow(
+        container.scrollLeft + container.clientWidth < container.scrollWidth
+      );
+    };
+
+    container.addEventListener('scroll', handleScroll);
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const onScrollRight = () => {
     containerRef.current?.scrollBy({
@@ -37,15 +70,19 @@ const MovieTuff = ({ title, name }: MovieTuffProps) => {
     <Wrap>
       <TopSect>
         <h1>{title}</h1>
-        <Link to={`/${name}`}>View more</Link>
+        <Link to={`/${hyphen(name)}`}>View more</Link>
       </TopSect>
       <Arrow>
-        <button onClick={onScrollLeft} className="left-arrow">
-          <IoChevronBack />
-        </button>
-        <button onClick={onScrollRight} className="right-arrow">
-          <IoChevronForward />
-        </button>
+        {showLeftArrow && (
+          <button onClick={onScrollLeft} className="left-arrow">
+            <IoChevronBack />
+          </button>
+        )}
+        {showRightArrow && (
+          <button onClick={onScrollRight} className="right-arrow">
+            <IoChevronForward />
+          </button>
+        )}
       </Arrow>
       <Main ref={containerRef}>
         {movies &&
@@ -108,12 +145,15 @@ const Arrow = styled.div`
     font-size: 22px;
     cursor: pointer;
     background-color: transparent;
+    position: absolute;
   }
 
   .left-arrow {
-    margin-left: -50px;
+    margin-left: -40px;
+    left: 0;
   }
   .right-arrow {
-    margin-right: -50px;
+    margin-right: -40px;
+    right: 0;
   }
 `;
