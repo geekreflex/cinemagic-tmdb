@@ -10,11 +10,19 @@ const Movie = ({ movie }: MovieProps) => {
   return (
     <Wrap>
       <h4>{movie.title}</h4>
-      <Image path={movie.poster_path} />
+      <div className="poster">
+        <Image path={movie.poster_path} />
+      </div>
     </Wrap>
   );
 };
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  .poster {
+    img {
+      width: 100%;
+    }
+  }
+`;
 
 export default Movie;

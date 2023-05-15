@@ -16,6 +16,6 @@ export interface IMovie {
 export interface MovieData {
   page: number;
   results: IMovie[];
-  total_page: number | any;
-  total_result: number | any;
+  total_pages: number | any;
+  total_results: number | any;
 }
