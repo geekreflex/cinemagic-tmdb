@@ -1,11 +1,8 @@
-import MovieList from './components/MovieList';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes';
 
 const App = () => {
-  return (
-    <div>
-      <MovieList />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
