@@ -11,6 +11,9 @@ export interface IMovie {
   genre_ids: number[];
   adult: boolean;
   release_date: string;
+  video: boolean;
+  tagline: string | null;
+  runtime: number | null;
 }
 
 export interface MovieData {

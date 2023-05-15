@@ -19,13 +19,16 @@ export const getMovies = async (key: string, nextPage = 1) => {
   return data;
 };
 
-export const getPopularMovies = async (_key: string, nextPage = 1) => {
-  const { data } = await axios.get(
-    `${apiUrl}/movie/popular?api_key=${apiKey}`,
-    {
-      params: { page: nextPage },
-      ...config,
-    }
-  );
+export const getMovie = async (id: string | undefined) => {
+  const { data } = await axios.get(`${apiUrl}/movie/${id}`, {
+    ...config,
+  });
+  return data;
+};
+
+export const getSimilarMovies = async (id: string | undefined) => {
+  const { data } = await axios.get(`${apiUrl}/movie/${id}/similar`, {
+    ...config,
+  });
   return data;
 };
