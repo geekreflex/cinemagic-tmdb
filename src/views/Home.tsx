@@ -6,9 +6,10 @@ const Home = () => {
   return (
     <Layout>
       <Main>
-        <MovieTuff title="Popular Movies" name="popular" />
-        <MovieTuff title="Upcoming Movies" name="upcoming" />
-        <MovieTuff title="In Theaters" name="now_playing" />
+        <MovieTuff title="Popular" name="popular" />
+        <MovieTuff title="Top Rated" name="top_rated" />
+        <MovieTuff title="Upcoming" name="upcoming" />
+        <MovieTuff title="Now Playing in Theaters" name="now_playing" />
       </Main>
     </Layout>
   );

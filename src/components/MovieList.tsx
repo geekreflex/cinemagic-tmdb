@@ -58,6 +58,6 @@ export default MovieList;
 
 const Main = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 20px;
 `;
