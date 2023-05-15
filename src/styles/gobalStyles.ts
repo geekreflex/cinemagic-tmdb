@@ -6,7 +6,9 @@ export const Container = styled.div`
   max-width: 1300px;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button.attrs<{ disabled?: boolean }>((props) => ({
+  disabled: props.disabled,
+}))`
   background-color: #e02e17;
   color: #fff;
   border: none;

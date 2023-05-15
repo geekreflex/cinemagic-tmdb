@@ -3,6 +3,7 @@ import Home from '../views/Home';
 import Popular from '../views/Popular';
 import Upcoming from '../views/Upcoming';
 import NowPlaying from '../views/NowPlaying';
+import MovieInfo from '../views/MovieInfo';
 
 export const router = createBrowserRouter([
   {
@@ -20,5 +21,9 @@ export const router = createBrowserRouter([
   {
     path: 'now-playing',
     element: <NowPlaying />,
+  },
+  {
+    path: '/movie/:movieId',
+    element: <MovieInfo />,
   },
 ]);
