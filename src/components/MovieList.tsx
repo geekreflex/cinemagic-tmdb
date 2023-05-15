@@ -4,7 +4,11 @@ import { MovieData } from '../types/movie';
 import Movie from './Movie';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-const MovieList = () => {
+interface MovieListProps {
+  name: string;
+}
+
+const MovieList = ({ name }: MovieListProps) => {
   const {
     data: movies,
     isLoading,
@@ -13,9 +17,9 @@ const MovieList = () => {
     isError,
     isFetchingNextPage,
   } = useInfiniteQuery<string[], void, MovieData, any>({
-    queryKey: ['popularMovies'],
+    queryKey: [name],
     queryFn: ({ pageParam }: { pageParam: number }) =>
-      getMovies('popularMovies', pageParam),
+      getMovies(name, pageParam),
     getNextPageParam: (lastPage: MovieData) => {
       if (lastPage.page < lastPage.total_pages) {
         return lastPage.page + 1;
@@ -31,7 +35,7 @@ const MovieList = () => {
     <div>
       <div>
         {movies &&
-          movies.pages.map((page, pageIndex) => (
+          movies?.pages?.map((page, pageIndex) => (
             <React.Fragment key={pageIndex}>
               {page.results.map((movie) => (
                 <Movie movie={movie} key={movie.id} />
