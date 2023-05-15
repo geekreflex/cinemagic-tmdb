@@ -50,7 +50,7 @@ const MovieTuff = ({ title, name }: MovieTuffProps) => {
     return () => {
       container.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [movies]);
 
   const onScrollRight = () => {
     containerRef.current?.scrollBy({
@@ -141,7 +141,7 @@ const Arrow = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    color: red;
+    color: #e02e17;
     font-size: 22px;
     cursor: pointer;
     background-color: transparent;

@@ -11,13 +11,13 @@ const Movie = ({ movie }: MovieProps) => {
   return (
     <Card>
       <div className="img-wrap">
+        <Content>
+          <p>{movie.overview}</p>
+          <p>{movie.vote_average}</p>
+        </Content>
         <Image path={movie.poster_path} className="" />
       </div>
-      <Details>
-        <Link to={`/movie/${movie.id}`}>
-          <p>{movie.title}</p>
-        </Link>
-      </Details>
+      <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
     </Card>
   );
 };
@@ -26,6 +26,7 @@ export default Movie;
 
 const Card = styled.div`
   .img-wrap {
+    position: relative;
     width: 100%;
     display: flex;
     border-radius: 10px;
@@ -33,15 +34,17 @@ const Card = styled.div`
     margin-bottom: 10px;
     cursor: pointer;
   }
-`;
 
-const Details = styled.div`
-  padding: 0 10px;
   a {
     text-decoration: none;
     color: inherit;
   }
-  p {
-    font-weight: 400;
-  }
+`;
+
+const Content = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 20px;
 `;

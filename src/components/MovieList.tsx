@@ -4,6 +4,7 @@ import { MovieData } from '../types/movie';
 import Movie from './Movie';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { styled } from 'styled-components';
+import { Button } from '../styles/gobalStyles';
 
 interface MovieListProps {
   name: string;
@@ -33,7 +34,7 @@ const MovieList = ({ name }: MovieListProps) => {
   if (isError) return <p>Error...</p>;
 
   return (
-    <div>
+    <Wrap>
       <Main>
         {movies &&
           movies?.pages?.map((page, pageIndex) => (
@@ -43,21 +44,33 @@ const MovieList = ({ name }: MovieListProps) => {
               ))}
             </React.Fragment>
           ))}
-
-        {hasNextPage && (
-          <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
-            {isFetchingNextPage ? 'Loading more...' : 'Load more'}{' '}
-          </button>
-        )}
       </Main>
-    </div>
+      {hasNextPage && (
+        <BtnWrap>
+          <Button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+            {isFetchingNextPage ? 'Loading more...' : 'Load more'}{' '}
+          </Button>
+        </BtnWrap>
+      )}
+    </Wrap>
   );
 };
 
 export default MovieList;
 
+const Wrap = styled.div`
+  margin-bottom: 80px;
+`;
 const Main = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 20px;
+  margin-bottom: 50px;
+`;
+
+const BtnWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;
