@@ -2,7 +2,6 @@ import React from 'react';
 import { getMovies } from '../api/movies';
 import { MovieData } from '../types/movie';
 import Movie from './Movie';
-import { styled } from 'styled-components';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 const MovieList = () => {
@@ -29,29 +28,25 @@ const MovieList = () => {
   if (isError) return <p>Error...</p>;
 
   return (
-    <Wrap>
-      {movies &&
-        movies.pages.map((page, pageIndex) => (
-          <React.Fragment key={pageIndex}>
-            {page.results.map((movie) => (
-              <Movie movie={movie} key={movie.id} />
-            ))}
-          </React.Fragment>
-        ))}
+    <div>
+      <div>
+        {movies &&
+          movies.pages.map((page, pageIndex) => (
+            <React.Fragment key={pageIndex}>
+              {page.results.map((movie) => (
+                <Movie movie={movie} key={movie.id} />
+              ))}
+            </React.Fragment>
+          ))}
 
-      {hasNextPage && (
-        <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
-          {isFetchingNextPage ? 'Loading more...' : 'Load more'}{' '}
-        </button>
-      )}
-    </Wrap>
+        {hasNextPage && (
+          <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+            {isFetchingNextPage ? 'Loading more...' : 'Load more'}{' '}
+          </button>
+        )}
+      </div>
+    </div>
   );
 };
 
 export default MovieList;
-
-const Wrap = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-`;
