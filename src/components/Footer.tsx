@@ -15,7 +15,6 @@ const Footer = () => {
             >
               TMDB API
             </a>{' '}
-            for movie data.
           </div>
         </Main>
       </Container>
@@ -32,4 +31,14 @@ const Wrap = styled.div`
 
 const Main = styled.div`
   min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+
+  a {
+    font-weight: 900;
+    text-decoration: none;
+    color: #176e8b;
+  }
 `;

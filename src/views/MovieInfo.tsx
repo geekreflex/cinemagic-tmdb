@@ -4,11 +4,13 @@ import { getMovie } from '../api/movies';
 import Image from '../components/Image';
 import { IMovie } from '../types/movie';
 import { styled } from 'styled-components';
-import SimilarList from '../components/SimilarList';
+import SimilarMovies from '../components/SimilarMovies';
 import Genres from '../components/Genres';
 import { IoStar } from 'react-icons/io5';
 import { truncate } from '../utils/truncate';
 import { InfoLoading } from '../components/Skeleton';
+import { Title } from '../styles/gobalStyles';
+import { formatTime } from '../utils/time';
 
 const MovieInfo = () => {
   const { movieId } = useParams();
@@ -26,7 +28,9 @@ const MovieInfo = () => {
       {isError && 'Error'}
       {movie && (
         <Main>
-          <h1>{movie.title}</h1>
+          <div className="title-wrap">
+            <Title>{movie.title}</Title>
+          </div>
           <InfoWrap>
             <div className="content">
               <div className="details">
@@ -41,7 +45,7 @@ const MovieInfo = () => {
                   </div>
                   <div>
                     <h3>Runtime</h3>
-                    <p>{movie.runtime}</p>
+                    <p>{formatTime(movie.runtime || 0)}</p>
                   </div>
                   <div>
                     <h3>Rating</h3>
@@ -63,7 +67,7 @@ const MovieInfo = () => {
           </InfoWrap>
         </Main>
       )}
-      <SimilarList id={movieId!} />
+      <SimilarMovies id={movieId!} />
     </>
   );
 };
@@ -71,8 +75,8 @@ const MovieInfo = () => {
 export default MovieInfo;
 
 const Main = styled.div`
-  h1 {
-    margin-left: 50px;
+  .title-wrap {
+    margin-bottom: 20px;
   }
 `;
 
@@ -93,10 +97,6 @@ const InfoWrap = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     margin-right: 100px;
-
-    h2 {
-      margin-bottom: 30px;
-    }
   }
 
   .poster {
@@ -137,10 +137,15 @@ const InfoWrap = styled.div`
     flex-direction: column;
     gap: 20px;
     h3 {
-      font-size: 16px;
+      font-size: 14px;
       color: #ccc;
       font-weight: 600;
       margin-bottom: 10px;
+    }
+
+    p {
+      line-height: 1.5;
+      font-size: 14px;
     }
   }
 

@@ -16,6 +16,14 @@ export const MovieList = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
   margin-bottom: 50px;
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+  }
+
+  @media (max-width: 300px) {
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+  }
 `;
 
 export const Button = styled.button.attrs<{ disabled?: boolean }>((props) => ({

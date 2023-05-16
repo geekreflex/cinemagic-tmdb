@@ -14,7 +14,7 @@ const Genres = ({ genres }: GenresProps) => {
       <h3>Genres</h3>
       <div className="genre-list">
         {genres.map((genre) => (
-          <Link to="/">
+          <Link to="/" key={genre.id}>
             <div className="genre" key={genre.id}>
               {genre.name}
             </div>

@@ -96,7 +96,7 @@ const MovieTuff = ({ title, name }: MovieTuffProps) => {
           <Inner>
             {movies &&
               movies?.results?.slice(0, 15).map((movie) => (
-                <div className="movie">
+                <div className="movie" key={movie.id}>
                   <Movie movie={movie} key={movie.id} />
                 </div>
               ))}

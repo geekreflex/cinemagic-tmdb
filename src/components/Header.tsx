@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Container } from '../styles/gobalStyles';
-import SearchInput from './SearchInput';
+import { IoMenu, IoSearch } from 'react-icons/io5';
 
 const Header = () => {
   return (
     <Wrap>
       <Container>
         <Main>
+          <div className="icon">
+            <IoMenu />
+          </div>
           <div className="hd-left">
             <Link to="/" className="logo">
               <h3>Movies</h3>
@@ -17,8 +20,8 @@ const Header = () => {
               <Link to="/tv-shows">Tv Shows</Link>
             </LinkList>
           </div>
-          <div>
-            <SearchInput />
+          <div className="icon">
+            <IoSearch />
           </div>
         </Main>
       </Container>
@@ -34,6 +37,7 @@ const Wrap = styled.div`
   align-items: center;
   background-color: #181818;
   border-bottom: 1px solid #242424;
+  transition: all 300ms;
 `;
 
 const Main = styled.div`
@@ -51,6 +55,19 @@ const Main = styled.div`
     color: #fff;
     font-size: 22px;
   }
+
+  .icon {
+    font-size: 25px;
+    cursor: pointer;
+    display: flex;
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .icon {
+      display: block;
+    }
+  }
 `;
 
 const LinkList = styled.div`
@@ -61,5 +78,12 @@ const LinkList = styled.div`
     color: #fff;
     text-decoration: none;
     font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+    .icon {
+      display: block;
+    }
   }
 `;

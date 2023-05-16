@@ -38,34 +38,29 @@ const Search = () => {
   }, [location]);
 
   return (
-    <Layout>
-      <Wrap>
-        {isLoading ? (
-          <DynamicGrid />
-        ) : (
-          <MovieList>
-            {movies &&
-              movies?.pages?.map((page, pageIndex) => (
-                <React.Fragment key={pageIndex}>
-                  {page.results.map((movie) => (
-                    <Movie movie={movie} key={movie.id} />
-                  ))}
-                </React.Fragment>
-              ))}
-          </MovieList>
-        )}
-        {hasNextPage && (
-          <BtnWrap>
-            <Button
-              onClick={() => fetchNextPage()}
-              disabled={isFetchingNextPage}
-            >
-              {isFetchingNextPage ? 'Loading more...' : 'Load more'}
-            </Button>
-          </BtnWrap>
-        )}
-      </Wrap>
-    </Layout>
+    <Wrap>
+      {isLoading ? (
+        <DynamicGrid />
+      ) : (
+        <MovieList>
+          {movies &&
+            movies?.pages?.map((page, pageIndex) => (
+              <React.Fragment key={pageIndex}>
+                {page.results.map((movie) => (
+                  <Movie movie={movie} key={movie.id} />
+                ))}
+              </React.Fragment>
+            ))}
+        </MovieList>
+      )}
+      {hasNextPage && (
+        <BtnWrap>
+          <Button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+            {isFetchingNextPage ? 'Loading more...' : 'Load more'}
+          </Button>
+        </BtnWrap>
+      )}
+    </Wrap>
   );
 };
 

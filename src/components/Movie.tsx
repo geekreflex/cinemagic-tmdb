@@ -64,7 +64,7 @@ const Card = styled.div`
     margin-bottom: 10px;
     background-color: #010101;
     cursor: pointer;
-    min-height: 300px;
+
     img {
       transition: all 300ms;
       width: 100%;

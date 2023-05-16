@@ -20,9 +20,7 @@ const SimilarMovies = ({ id }: { id: string }) => {
         <MovieList>
           {movies &&
             movies.results.map((movie) => {
-              if (movie.poster_path) {
-                return <Movie movie={movie} />;
-              }
+              return <Movie movie={movie} key={movie.id} />;
             })}
         </MovieList>
       )}
