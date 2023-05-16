@@ -4,9 +4,10 @@ import { getSearch } from '../api/movies';
 import { MovieData } from '../types/movie';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { styled } from 'styled-components';
-import { Button } from '../styles/gobalStyles';
+import { Button, MovieList } from '../styles/gobalStyles';
 import Movie from '../components/Movie';
 import Layout from '../components/Layout';
+import { DynamicGrid } from '../components/Skeleton';
 
 const Search = () => {
   const location = useLocation();
@@ -17,7 +18,6 @@ const Search = () => {
     isLoading,
     hasNextPage,
     fetchNextPage,
-    isError,
     isFetchingNextPage,
   } = useInfiniteQuery<string[], void, MovieData, any>({
     queryKey: [search, 'search'],
@@ -40,16 +40,20 @@ const Search = () => {
   return (
     <Layout>
       <Wrap>
-        <Main>
-          {movies &&
-            movies?.pages?.map((page, pageIndex) => (
-              <React.Fragment key={pageIndex}>
-                {page.results.map((movie) => (
-                  <Movie movie={movie} key={movie.id} />
-                ))}
-              </React.Fragment>
-            ))}
-        </Main>
+        {isLoading ? (
+          <DynamicGrid />
+        ) : (
+          <MovieList>
+            {movies &&
+              movies?.pages?.map((page, pageIndex) => (
+                <React.Fragment key={pageIndex}>
+                  {page.results.map((movie) => (
+                    <Movie movie={movie} key={movie.id} />
+                  ))}
+                </React.Fragment>
+              ))}
+          </MovieList>
+        )}
         {hasNextPage && (
           <BtnWrap>
             <Button
@@ -69,12 +73,6 @@ export default Search;
 
 const Wrap = styled.div`
   margin-bottom: 80px;
-`;
-const Main = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: 20px;
-  margin-bottom: 50px;
 `;
 
 const BtnWrap = styled.div`

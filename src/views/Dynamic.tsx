@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import Layout from '../components/Layout';
 import { Button, MovieList, Title } from '../styles/gobalStyles';
 import { styled } from 'styled-components';
 import { useInfiniteQuery } from '@tanstack/react-query';
@@ -40,7 +39,7 @@ const Dynamic = () => {
   if (!movie) return <div>No Movie</div>;
 
   return (
-    <Layout>
+    <>
       {isLoading ? (
         <DynamicGrid />
       ) : (
@@ -68,7 +67,7 @@ const Dynamic = () => {
           )}
         </>
       )}
-    </Layout>
+    </>
   );
 };
 

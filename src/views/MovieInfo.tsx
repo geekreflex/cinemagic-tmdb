@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import Layout from '../components/Layout';
 import { useQuery } from '@tanstack/react-query';
 import { getMovie } from '../api/movies';
 import Image from '../components/Image';
@@ -13,14 +12,18 @@ import { InfoLoading } from '../components/Skeleton';
 
 const MovieInfo = () => {
   const { movieId } = useParams();
-  const { data: movie, isLoading } = useQuery<void, unknown, IMovie>({
+  const {
+    data: movie,
+    isLoading,
+    isError,
+  } = useQuery<void, unknown, IMovie>({
     queryKey: ['movie', movieId],
     queryFn: () => getMovie(movieId),
   });
-  console.log(movie);
   return (
-    <Layout>
+    <>
       {isLoading && <InfoLoading />}
+      {isError && 'Error'}
       {movie && (
         <Main>
           <h1>{movie.title}</h1>
@@ -61,7 +64,7 @@ const MovieInfo = () => {
         </Main>
       )}
       <SimilarList id={movieId!} />
-    </Layout>
+    </>
   );
 };
 

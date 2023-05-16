@@ -6,7 +6,17 @@ const Footer = () => {
     <Wrap>
       <Container>
         <Main>
-          <h3>This is the footer</h3>
+          <div className="attribution">
+            This website uses the{' '}
+            <a
+              href="https://www.themoviedb.org/documentation/api"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              TMDB API
+            </a>{' '}
+            for movie data.
+          </div>
         </Main>
       </Container>
     </Wrap>
