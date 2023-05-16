@@ -71,7 +71,7 @@ const MovieTuff = ({ title, name }: MovieTuffProps) => {
     <Wrap>
       <TopSect>
         <Title>{title}</Title>
-        <Link to={`/${hyphen(name)}`}>
+        <Link to={`/movies/${hyphen(name)}`}>
           <span>All movies</span>
           <IoChevronForward />
         </Link>

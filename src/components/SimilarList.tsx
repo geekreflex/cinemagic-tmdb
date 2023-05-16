@@ -3,7 +3,7 @@ import { MovieData } from '../types/movie';
 import { getSimilarMovies } from '../api/movies';
 import { styled } from 'styled-components';
 import Movie from './Movie';
-import { Title } from '../styles/gobalStyles';
+import { MovieList, Title } from '../styles/gobalStyles';
 
 const SimilarMovies = ({ id }: { id: string }) => {
   const { data: movies } = useQuery<void, unknown, MovieData>({
@@ -13,26 +13,18 @@ const SimilarMovies = ({ id }: { id: string }) => {
   return (
     <Wrap>
       <Title>More Like This</Title>
-      <Main>
+      <MovieList>
         {movies &&
           movies.results.map((movie) => {
             if (movie.poster_path) {
               return <Movie movie={movie} />;
             }
           })}
-      </Main>
+      </MovieList>
     </Wrap>
   );
 };
 
 export default SimilarMovies;
 
-const Wrap = styled.div`
-  margin-bottom: 80px;
-`;
-const Main = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: 20px;
-  margin-bottom: 50px;
-`;
+const Wrap = styled.div``;

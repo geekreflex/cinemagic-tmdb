@@ -18,7 +18,7 @@ export const router = createBrowserRouter([
     element: <MovieInfo />,
   },
   {
-    path: '/:movie',
+    path: '/movies/:movie',
     element: <Dynamic />,
   },
 ]);

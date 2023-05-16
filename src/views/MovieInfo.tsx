@@ -7,6 +7,7 @@ import { IMovie } from '../types/movie';
 import { styled } from 'styled-components';
 import SimilarList from '../components/SimilarList';
 import Genres from '../components/Genres';
+import { IoStar } from 'react-icons/io5';
 
 const MovieInfo = () => {
   const { movieId } = useParams();
@@ -21,6 +22,7 @@ const MovieInfo = () => {
         <InfoWrap>
           <div className="content">
             <h2>{movie.title}</h2>
+
             <div className="details">
               <div>
                 <h3>Overview</h3>
@@ -34,6 +36,15 @@ const MovieInfo = () => {
                 <div>
                   <h3>Runtime</h3>
                   <p>{movie.runtime}</p>
+                </div>
+                <div>
+                  <h3>Rating</h3>
+                  <Star>
+                    <span>
+                      <IoStar />
+                    </span>
+                    <p>{movie.vote_average.toFixed(1)}</p>
+                  </Star>
                 </div>
               </div>
               <Genres genres={movie.genres} />
@@ -57,6 +68,7 @@ export default MovieInfo;
 
 const InfoWrap = styled.div`
   margin-bottom: 100px;
+  height: 500px;
   background-color: #010101;
   padding: 30px;
   border-radius: 20px;
@@ -95,17 +107,18 @@ const InfoWrap = styled.div`
     width: 40%;
     display: flex;
     position: relative;
-    overflow: hidden;
     border-radius: 20px;
     .gradient {
       background: linear-gradient(to right, #010101, #010101, transparent);
-      width: 100px;
+      width: 150px;
       height: 100%;
       position: absolute;
+      margin-left: -30px;
     }
     img {
       width: 100%;
       object-fit: cover;
+      border-radius: 20px;
     }
   }
 
@@ -123,6 +136,18 @@ const InfoWrap = styled.div`
 
   .subgroup {
     display: flex;
-    gap: 30px;
+    gap: 50px;
+  }
+`;
+
+const Star = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  span {
+    color: yellow;
+    font-size: 20px;
+    display: flex;
+    margin-bottom: 4px;
   }
 `;

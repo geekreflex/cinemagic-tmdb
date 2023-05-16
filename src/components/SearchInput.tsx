@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoClose, IoSearch } from 'react-icons/io5';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 const SearchInput = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [query, setQuery] = useState('');
 
-  const onSubmit = () => {
+  const onSubmit = (e: any) => {
+    e.preventDefault();
     navigate(`/search?q=${query}`);
   };
+
+  // useEffect(() => {
+  //   const path = location.pathname;
+  //   console.log(path);
+  //   if (path === '/search') {
+  //     navigate(`/search?q=${query}`);
+  //   }
+  // }, [query]);
 
   return (
     <Wrap>

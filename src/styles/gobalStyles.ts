@@ -10,6 +10,13 @@ export const Title = styled.h2`
   margin-bottom: 20px;
 `;
 
+export const MovieList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 20px;
+  margin-bottom: 50px;
+`;
+
 export const Button = styled.button.attrs<{ disabled?: boolean }>((props) => ({
   disabled: props.disabled,
 }))`

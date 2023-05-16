@@ -23,5 +23,5 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 export default Layout;
 
 const Main = styled.div`
-  margin-top: 50px;
+  margin: 50px 0;
 `;
