@@ -4,23 +4,28 @@ import { getSimilarMovies } from '../api/movies';
 import { styled } from 'styled-components';
 import Movie from './Movie';
 import { MovieList, Title } from '../styles/gobalStyles';
+import { DynamicGrid } from './Skeleton';
 
 const SimilarMovies = ({ id }: { id: string }) => {
-  const { data: movies } = useQuery<void, unknown, MovieData>({
+  const { data: movies, isLoading } = useQuery<void, unknown, MovieData>({
     queryKey: ['similar-movies', id],
     queryFn: () => getSimilarMovies(id),
   });
   return (
     <Wrap>
       <Title>More Like This</Title>
-      <MovieList>
-        {movies &&
-          movies.results.map((movie) => {
-            if (movie.poster_path) {
-              return <Movie movie={movie} />;
-            }
-          })}
-      </MovieList>
+      {isLoading ? (
+        <DynamicGrid />
+      ) : (
+        <MovieList>
+          {movies &&
+            movies.results.map((movie) => {
+              if (movie.poster_path) {
+                return <Movie movie={movie} />;
+              }
+            })}
+        </MovieList>
+      )}
     </Wrap>
   );
 };

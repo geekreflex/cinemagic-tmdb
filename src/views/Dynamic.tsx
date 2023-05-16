@@ -7,6 +7,8 @@ import { getMovies } from '../api/movies';
 import { MovieData } from '../types/movie';
 import React from 'react';
 import Movie from '../components/Movie';
+import { underscore } from '../utils/hyphen';
+import { DynamicGrid } from '../components/Skeleton';
 
 const Dynamic = () => {
   const { movie } = useParams();
@@ -21,7 +23,7 @@ const Dynamic = () => {
   } = useInfiniteQuery<string[], void, MovieData, any>({
     queryKey: [movie, 'dynamic'],
     queryFn: ({ pageParam }: { pageParam: number }) =>
-      getMovies(movie!, pageParam),
+      getMovies(underscore(movie!), pageParam),
     getNextPageParam: (lastPage: MovieData) => {
       if (lastPage.page < lastPage.total_pages) {
         return lastPage.page + 1;
@@ -41,10 +43,10 @@ const Dynamic = () => {
   return (
     <Layout>
       {isLoading ? (
-        'Loading...'
+        <DynamicGrid />
       ) : (
         <>
-          <Title>{titles[movie]}</Title>
+          <Title>{titles[movie!]}</Title>
           <MovieList>
             {movies &&
               movies?.pages?.map((page, pageIndex) => (

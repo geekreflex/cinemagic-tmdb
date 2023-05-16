@@ -8,6 +8,7 @@ import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { hyphen } from '../utils/hyphen';
 import { Title } from '../styles/gobalStyles';
+import { Grid6 } from './Skeleton';
 
 interface MovieTuffProps {
   title: string;
@@ -18,7 +19,7 @@ const MovieTuff = ({ title, name }: MovieTuffProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showLeftArrow, setShowLeftArrow] = useState<boolean>(false);
   const [showRightArrow, setShowRightArrow] = useState<boolean>(false);
-  const { data: movies } = useQuery<void, unknown, MovieData>({
+  const { data: movies, isLoading } = useQuery<void, unknown, MovieData>({
     queryKey: [name],
     queryFn: () => getMovies(name),
   });
@@ -88,14 +89,20 @@ const MovieTuff = ({ title, name }: MovieTuffProps) => {
           </button>
         )}
       </Arrow>
-      <Main ref={containerRef}>
-        <Inner>
-          {movies &&
-            movies?.results
-              ?.slice(0, 9)
-              .map((movie) => <Movie movie={movie} key={movie.id} />)}
-        </Inner>
-      </Main>
+      {isLoading ? (
+        <Grid6 />
+      ) : (
+        <Main ref={containerRef}>
+          <Inner>
+            {movies &&
+              movies?.results?.slice(0, 15).map((movie) => (
+                <div className="movie">
+                  <Movie movie={movie} key={movie.id} />
+                </div>
+              ))}
+          </Inner>
+        </Main>
+      )}
     </Wrap>
   );
 };
@@ -124,6 +131,10 @@ const Inner = styled.div`
   overflow-x: hidden;
   display: flex;
   gap: 20px;
+
+  .movie {
+    width: 200px;
+  }
 `;
 const TopSect = styled.div`
   display: flex;

@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { Container } from '../styles/gobalStyles';
 import Header from './Header';
 import AnimPre from './anim/AnimPre';
+import Footer from './Footer';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,6 +17,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <Container>{children}</Container>
         </AnimPre>
       </Main>
+      <Footer />
     </div>
   );
 };

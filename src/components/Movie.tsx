@@ -4,6 +4,7 @@ import Image from './Image';
 import { Link } from 'react-router-dom';
 import { truncate } from '../utils/truncate';
 import { useState } from 'react';
+import AnimMovie from './anim/AnimMovie';
 
 interface MovieProps {
   movie: IMovie;
@@ -12,23 +13,25 @@ interface MovieProps {
 const Movie = ({ movie }: MovieProps) => {
   const [visible, setVisible] = useState(false);
   return (
-    <Card>
-      <Link to={`/movie/${movie.id}`}>
-        <div
-          className="img-wrap"
-          onMouseEnter={() => setVisible(true)}
-          onMouseLeave={() => setVisible(false)}
-        >
-          <Content visible={visible.toString()}>
-            <p>{truncate(movie.overview, 100)}</p>
-          </Content>
-          <Image path={movie.poster_path} className="" />
-        </div>
-      </Link>
-      <Link className="title" to={`/movie/${movie.id}`}>
-        {movie.title}
-      </Link>
-    </Card>
+    <AnimMovie>
+      <Card title={movie.title}>
+        <Link to={`/movie/${movie.id}`}>
+          <div
+            className="img-wrap"
+            onMouseEnter={() => setVisible(true)}
+            onMouseLeave={() => setVisible(false)}
+          >
+            <Content visible={visible.toString()}>
+              <p>{truncate(movie.overview, 100)}</p>
+            </Content>
+            <Image path={movie.poster_path} className="" />
+          </div>
+        </Link>
+        <Link className="title" to={`/movie/${movie.id}`}>
+          {movie.title}
+        </Link>
+      </Card>
+    </AnimMovie>
   );
 };
 
@@ -42,6 +45,10 @@ const Card = styled.div`
   .title {
     padding: 0 10px;
     font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     color: #fff;
     &:hover {
       color: #ccc;
@@ -57,11 +64,11 @@ const Card = styled.div`
     margin-bottom: 10px;
     background-color: #010101;
     cursor: pointer;
+    height: 300px;
     img {
       transition: all 300ms;
       width: 100%;
-      /* height: 100%; */
-      height: 500px;
+      height: 100%;
       object-fit: cover;
     }
     &:hover {
@@ -88,7 +95,7 @@ const Content = styled.div<ContentProps>`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 20px;
+  padding: 10px;
   display: flex;
   align-items: flex-end;
   transition: all 300ms;
@@ -96,6 +103,7 @@ const Content = styled.div<ContentProps>`
 
   p {
     font-weight: 600;
-    color: #ccc;
+    color: #fff;
+    font-size: 14px;
   }
 `;

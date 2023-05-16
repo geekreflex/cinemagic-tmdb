@@ -8,56 +8,57 @@ import { styled } from 'styled-components';
 import SimilarList from '../components/SimilarList';
 import Genres from '../components/Genres';
 import { IoStar } from 'react-icons/io5';
+import { truncate } from '../utils/truncate';
+import { InfoLoading } from '../components/Skeleton';
 
 const MovieInfo = () => {
   const { movieId } = useParams();
-  const { data: movie } = useQuery<void, unknown, IMovie>({
+  const { data: movie, isLoading } = useQuery<void, unknown, IMovie>({
     queryKey: ['movie', movieId],
     queryFn: () => getMovie(movieId),
   });
   console.log(movie);
   return (
     <Layout>
+      {isLoading && <InfoLoading />}
       {movie && (
-        <InfoWrap>
-          <div className="content">
-            <h2>{movie.title}</h2>
-
-            <div className="details">
-              <div>
-                <h3>Overview</h3>
-                <p>{movie.overview}</p>
+        <Main>
+          <h1>{movie.title}</h1>
+          <InfoWrap>
+            <div className="content">
+              <div className="details">
+                <div>
+                  <h3>Overview</h3>
+                  <p>{truncate(movie.overview, 500)}</p>
+                </div>
+                <div className="subgroup">
+                  <div>
+                    <h3>Release date</h3>
+                    <p>{movie.release_date}</p>
+                  </div>
+                  <div>
+                    <h3>Runtime</h3>
+                    <p>{movie.runtime}</p>
+                  </div>
+                  <div>
+                    <h3>Rating</h3>
+                    <Star>
+                      <span>
+                        <IoStar />
+                      </span>
+                      <p>{movie.vote_average.toFixed(1)}</p>
+                    </Star>
+                  </div>
+                </div>
+                <Genres genres={movie.genres} />
               </div>
-              <div className="subgroup">
-                <div>
-                  <h3>Release date</h3>
-                  <p>{movie.release_date}</p>
-                </div>
-                <div>
-                  <h3>Runtime</h3>
-                  <p>{movie.runtime}</p>
-                </div>
-                <div>
-                  <h3>Rating</h3>
-                  <Star>
-                    <span>
-                      <IoStar />
-                    </span>
-                    <p>{movie.vote_average.toFixed(1)}</p>
-                  </Star>
-                </div>
-              </div>
-              <Genres genres={movie.genres} />
             </div>
-          </div>
-          <div className="backdrop">
-            <div className="gradient"></div>
-            <Image path={movie.backdrop_path} size={500} />
-          </div>
-          {/* <div className="poster">
-            <Image path={movie.poster_path} />
-          </div> */}
-        </InfoWrap>
+            <div className="backdrop">
+              <div className="gradient"></div>
+              <Image path={movie.backdrop_path} size={500} />
+            </div>
+          </InfoWrap>
+        </Main>
       )}
       <SimilarList id={movieId!} />
     </Layout>
@@ -65,6 +66,12 @@ const MovieInfo = () => {
 };
 
 export default MovieInfo;
+
+const Main = styled.div`
+  h1 {
+    margin-left: 50px;
+  }
+`;
 
 const InfoWrap = styled.div`
   margin-bottom: 100px;
