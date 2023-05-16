@@ -19,14 +19,15 @@ const Movie = ({ movie }: MovieProps) => {
           onMouseEnter={() => setVisible(true)}
           onMouseLeave={() => setVisible(false)}
         >
-          <Content visible={visible}>
-            {/* <p>{movie.vote_average}</p> */}
+          <Content visible={visible.toString()}>
             <p>{truncate(movie.overview, 100)}</p>
           </Content>
           <Image path={movie.poster_path} className="" />
         </div>
       </Link>
-      <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
+      <Link className="title" to={`/movie/${movie.id}`}>
+        {movie.title}
+      </Link>
     </Card>
   );
 };
@@ -38,6 +39,15 @@ const Card = styled.div`
   flex-direction: column;
   width: 100%;
 
+  .title {
+    padding: 0 10px;
+    font-weight: 600;
+    color: #fff;
+    &:hover {
+      color: #ccc;
+    }
+  }
+
   .img-wrap {
     position: relative;
     width: 100%;
@@ -45,13 +55,13 @@ const Card = styled.div`
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 10px;
-    height: 500px;
     background-color: #010101;
     cursor: pointer;
     img {
       transition: all 300ms;
       width: 100%;
-      height: 100%;
+      /* height: 100%; */
+      height: 500px;
       object-fit: cover;
     }
     &:hover {
@@ -68,12 +78,12 @@ const Card = styled.div`
 `;
 
 interface ContentProps {
-  visible: boolean;
+  visible: string;
 }
 
 const Content = styled.div<ContentProps>`
-  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
-  opacity: ${(props) => (props.visible ? 1 : 0)};
+  visibility: ${(props) => (props.visible === 'true' ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.visible === 'true' ? 1 : 0)};
   position: absolute;
   width: 100%;
   height: 100%;
@@ -83,4 +93,9 @@ const Content = styled.div<ContentProps>`
   align-items: flex-end;
   transition: all 300ms;
   z-index: 9;
+
+  p {
+    font-weight: 600;
+    color: #ccc;
+  }
 `;

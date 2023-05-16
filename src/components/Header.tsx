@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Container } from '../styles/gobalStyles';
-import Search from './Search';
+import SearchInput from './SearchInput';
 
 const Header = () => {
   return (
@@ -18,7 +18,7 @@ const Header = () => {
             </LinkList>
           </div>
           <div>
-            <Search />
+            <SearchInput />
           </div>
         </Main>
       </Container>

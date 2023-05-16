@@ -1,16 +1,22 @@
 import { useState } from 'react';
 import { IoClose, IoSearch } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-const Search = () => {
+const SearchInput = () => {
+  const navigate = useNavigate();
   const [query, setQuery] = useState('');
+
+  const onSubmit = () => {
+    navigate(`/search?q=${query}`);
+  };
 
   return (
     <Wrap>
       <div className="search-icon icon">
         <IoSearch />
       </div>
-      <form>
+      <form onSubmit={onSubmit}>
         <input
           placeholder="Search here..."
           value={query}
@@ -26,7 +32,7 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchInput;
 
 const Wrap = styled.div`
   background-color: #111111;

@@ -32,3 +32,11 @@ export const getSimilarMovies = async (id: string | undefined) => {
   });
   return data;
 };
+
+export const getSearch = async (query: string, nextPage = 1) => {
+  const { data } = await axios.get(`${apiUrl}/search/movie`, {
+    ...config,
+    params: { query, page: nextPage },
+  });
+  return data;
+};

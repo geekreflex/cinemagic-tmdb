@@ -5,7 +5,7 @@ import { getMovie } from '../api/movies';
 import Image from '../components/Image';
 import { IMovie } from '../types/movie';
 import { styled } from 'styled-components';
-import SimilarMovies from '../components/SimilarMovies';
+import SimilarList from '../components/SimilarList';
 import Genres from '../components/Genres';
 
 const MovieInfo = () => {
@@ -48,7 +48,7 @@ const MovieInfo = () => {
           </div> */}
         </InfoWrap>
       )}
-      <SimilarMovies id={movieId!} />
+      <SimilarList id={movieId!} />
     </Layout>
   );
 };
