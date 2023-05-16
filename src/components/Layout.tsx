@@ -1,5 +1,7 @@
+import { styled } from 'styled-components';
 import { Container } from '../styles/gobalStyles';
 import Header from './Header';
+import AnimPre from './anim/AnimPre';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,9 +11,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div>
       <Header />
-      <Container>{children}</Container>
+      <Main>
+        <AnimPre>
+          <Container>{children}</Container>
+        </AnimPre>
+      </Main>
     </div>
   );
 };
 
 export default Layout;
+
+const Main = styled.div`
+  margin-top: 50px;
+`;
