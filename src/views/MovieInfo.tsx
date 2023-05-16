@@ -148,6 +148,31 @@ const InfoWrap = styled.div`
     display: flex;
     gap: 50px;
   }
+
+  @media (max-width: 768px) {
+    padding: 0;
+    flex-direction: column;
+    height: auto;
+    .backdrop {
+      order: 1;
+      width: 100%;
+      height: 250px;
+      .gradient {
+        width: 100%;
+        height: 60px;
+        margin: 0;
+        margin-bottom: -10px;
+        bottom: 0;
+        background: linear-gradient(to top, #010101, #010101, transparent);
+      }
+    }
+    .content {
+      order: 2;
+      padding: 20px;
+      width: 100%;
+      margin: 0;
+    }
+  }
 `;
 
 const Star = styled.div`
