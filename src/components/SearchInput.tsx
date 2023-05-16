@@ -37,7 +37,7 @@ export default SearchInput;
 
 const Wrap = styled.div`
   background-color: #111111;
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   width: 350px;
   border: 1px solid #242424;

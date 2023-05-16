@@ -19,6 +19,7 @@ const Header = () => {
             <LinkList>
               <Link to="/">Movies</Link>
               <Link to="/tv-shows">Tv Shows</Link>
+              <Link to="/">Favorites</Link>
             </LinkList>
           </div>
           <SearchInput />
