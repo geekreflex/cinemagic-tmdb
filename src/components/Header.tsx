@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Container } from '../styles/gobalStyles';
 import { IoMenu, IoSearch } from 'react-icons/io5';
+import SearchInput from './SearchInput';
 
 const Header = () => {
   return (
@@ -20,6 +21,7 @@ const Header = () => {
               <Link to="/tv-shows">Tv Shows</Link>
             </LinkList>
           </div>
+          <SearchInput />
           <div className="icon">
             <IoSearch />
           </div>

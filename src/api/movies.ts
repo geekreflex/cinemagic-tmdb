@@ -40,3 +40,10 @@ export const getSearch = async (query: string, nextPage = 1) => {
   });
   return data;
 };
+
+export const getLatestMovie = async () => {
+  const { data } = await axios.get(`${apiUrl}/movie/latest`, {
+    ...config,
+  });
+  return data;
+};

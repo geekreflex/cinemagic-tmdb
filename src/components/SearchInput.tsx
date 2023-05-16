@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IoClose, IoSearch } from 'react-icons/io5';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 const SearchInput = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [query, setQuery] = useState('');
 
   const onSubmit = (e: any) => {
@@ -15,7 +14,7 @@ const SearchInput = () => {
 
   return (
     <Wrap>
-      <div className="search-icon icon">
+      <div className="search-icon">
         <IoSearch />
       </div>
       <form onSubmit={onSubmit}>
@@ -26,7 +25,7 @@ const SearchInput = () => {
         />
       </form>
       {query && (
-        <div className="close-icon icon" onClick={() => setQuery('')}>
+        <div className="close-icon" onClick={() => setQuery('')}>
           <IoClose />
         </div>
       )}
@@ -56,7 +55,8 @@ const Wrap = styled.div`
     color: #ccc;
   }
 
-  .icon {
+  .search-icon,
+  .close-icon {
     display: flex;
     justify-content: center;
     align-items: center;
