@@ -18,7 +18,6 @@ const Dynamic = () => {
     isLoading,
     hasNextPage,
     fetchNextPage,
-    isError,
     isFetchingNextPage,
   } = useInfiniteQuery<string[], void, MovieData, any>({
     queryKey: [movie, 'dynamic'],

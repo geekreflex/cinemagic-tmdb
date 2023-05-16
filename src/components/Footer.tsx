@@ -17,7 +17,7 @@ export default Footer;
 
 const Wrap = styled.div`
   width: 100%;
-  background-color: #010101;
+  background-color: #111;
 `;
 
 const Main = styled.div`

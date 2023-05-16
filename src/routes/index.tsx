@@ -3,6 +3,7 @@ import Home from '../views/Home';
 import Dynamic from '../views/Dynamic';
 import MovieInfo from '../views/MovieInfo';
 import Search from '../views/Search';
+import NotFound from '../views/404';
 
 export const router = createBrowserRouter([
   {
@@ -20,5 +21,9 @@ export const router = createBrowserRouter([
   {
     path: '/movies/:movie',
     element: <Dynamic />,
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ]);
