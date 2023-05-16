@@ -19,7 +19,7 @@ const MovieList = ({ name }: MovieListProps) => {
     isError,
     isFetchingNextPage,
   } = useInfiniteQuery<string[], void, MovieData, any>({
-    queryKey: [name],
+    queryKey: [name, 'dynamic'],
     queryFn: ({ pageParam }: { pageParam: number }) =>
       getMovies(name, pageParam),
     getNextPageParam: (lastPage: MovieData) => {

@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { hyphen } from '../utils/hyphen';
+import { Title } from '../styles/gobalStyles';
 
 interface MovieTuffProps {
   title: string;
@@ -69,7 +70,7 @@ const MovieTuff = ({ title, name }: MovieTuffProps) => {
   return (
     <Wrap>
       <TopSect>
-        <h1>{title}</h1>
+        <Title>{title}</Title>
         <Link to={`/${hyphen(name)}`}>
           <span>All movies</span>
           <IoChevronForward />
@@ -88,10 +89,12 @@ const MovieTuff = ({ title, name }: MovieTuffProps) => {
         )}
       </Arrow>
       <Main ref={containerRef}>
-        {movies &&
-          movies?.results
-            ?.slice(0, 9)
-            .map((movie) => <Movie movie={movie} key={movie.id} />)}
+        <Inner>
+          {movies &&
+            movies?.results
+              ?.slice(0, 9)
+              .map((movie) => <Movie movie={movie} key={movie.id} />)}
+        </Inner>
       </Main>
     </Wrap>
   );
@@ -101,9 +104,11 @@ export default MovieTuff;
 
 const Wrap = styled.div`
   position: relative;
+  width: 100%;
 `;
+
 const Main = styled.div`
-  display: flex;
+  width: 100%;
   gap: 15px;
   overflow-x: scroll;
 
@@ -112,6 +117,13 @@ const Main = styled.div`
     height: 0px;
     background-color: transparent;
   }
+`;
+
+const Inner = styled.div`
+  width: max-content;
+  overflow-x: hidden;
+  display: flex;
+  gap: 20px;
 `;
 const TopSect = styled.div`
   display: flex;
@@ -139,6 +151,7 @@ const TopSect = styled.div`
     }
   }
 `;
+
 const Arrow = styled.div`
   display: flex;
   align-items: center;

@@ -34,6 +34,10 @@ const Movie = ({ movie }: MovieProps) => {
 export default Movie;
 
 const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
   .img-wrap {
     position: relative;
     width: 100%;
@@ -41,9 +45,14 @@ const Card = styled.div`
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 10px;
+    height: 500px;
+    background-color: #010101;
     cursor: pointer;
     img {
       transition: all 300ms;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     &:hover {
       img {

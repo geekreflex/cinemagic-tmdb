@@ -3,6 +3,7 @@ import { MovieData } from '../types/movie';
 import { getSimilarMovies } from '../api/movies';
 import { styled } from 'styled-components';
 import Movie from './Movie';
+import { Title } from '../styles/gobalStyles';
 
 const SimilarMovies = ({ id }: { id: string }) => {
   const { data: movies } = useQuery<void, unknown, MovieData>({
@@ -11,7 +12,7 @@ const SimilarMovies = ({ id }: { id: string }) => {
   });
   return (
     <Wrap>
-      <h2>Similar Movies</h2>
+      <Title>More Like This</Title>
       <Main>
         {movies &&
           movies.results.map((movie) => {

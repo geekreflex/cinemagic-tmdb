@@ -6,6 +6,10 @@ export const Container = styled.div`
   max-width: 1300px;
 `;
 
+export const Title = styled.h2`
+  margin-bottom: 20px;
+`;
+
 export const Button = styled.button.attrs<{ disabled?: boolean }>((props) => ({
   disabled: props.disabled,
 }))`

@@ -14,6 +14,10 @@ export interface IMovie {
   video: boolean;
   tagline: string | null;
   runtime: number | null;
+  genres: {
+    id: number;
+    name: string;
+  }[];
 }
 
 export interface MovieData {
