@@ -70,7 +70,10 @@ const MovieTuff = ({ title, name }: MovieTuffProps) => {
     <Wrap>
       <TopSect>
         <h1>{title}</h1>
-        <Link to={`/${hyphen(name)}`}>View more</Link>
+        <Link to={`/${hyphen(name)}`}>
+          <span>All movies</span>
+          <IoChevronForward />
+        </Link>
       </TopSect>
       <Arrow>
         {showLeftArrow && (
@@ -119,6 +122,21 @@ const TopSect = styled.div`
   a {
     text-decoration: none;
     color: inherit;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 15px;
+    color: #ccc;
+    transition: all 300ms;
+    &:hover {
+      span {
+        margin-right: 20px;
+      }
+    }
+    span {
+      margin-right: 10px;
+      transition: all 300ms;
+    }
   }
 `;
 const Arrow = styled.div`
@@ -131,6 +149,7 @@ const Arrow = styled.div`
   z-index: 998;
   justify-content: space-between;
   top: 50%;
+  transform: translateY(30px);
 
   button {
     width: 40px;

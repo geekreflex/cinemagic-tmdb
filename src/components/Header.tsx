@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Container } from '../styles/gobalStyles';
+import Search from './Search';
 
 const Header = () => {
   return (
@@ -16,7 +17,9 @@ const Header = () => {
               <Link to="/now-playing">Tv Shows</Link>
             </LinkList>
           </div>
-          <div>Search</div>
+          <div>
+            <Search />
+          </div>
         </Main>
       </Container>
     </Wrap>
@@ -27,9 +30,10 @@ export default Header;
 
 const Wrap = styled.div`
   display: flex;
-  height: 60px;
+  height: 70px;
   align-items: center;
-  background-color: #000000;
+  background-color: #181818;
+  border-bottom: 1px solid #242424;
 `;
 
 const Main = styled.div`
