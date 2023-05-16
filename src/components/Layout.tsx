@@ -26,4 +26,5 @@ export default Layout;
 
 const Main = styled.div`
   margin: 50px 0;
+  min-height: 90vh;
 `;

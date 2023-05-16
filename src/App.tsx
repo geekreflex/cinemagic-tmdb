@@ -5,6 +5,7 @@ import NotFound from './views/404';
 import Search from './views/Search';
 import MovieInfo from './views/MovieInfo';
 import Layout from './components/Layout';
+import TvShows from './views/TvShows';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/tv-shows" element={<TvShows />} />
           <Route path="/movies/:movie" element={<Dynamic />} />
           <Route path="/movie/:movieId" element={<MovieInfo />} />
           <Route path="*" element={<NotFound />} />

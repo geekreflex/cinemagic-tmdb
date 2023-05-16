@@ -13,14 +13,6 @@ const SearchInput = () => {
     navigate(`/search?q=${query}`);
   };
 
-  // useEffect(() => {
-  //   const path = location.pathname;
-  //   console.log(path);
-  //   if (path === '/search') {
-  //     navigate(`/search?q=${query}`);
-  //   }
-  // }, [query]);
-
   return (
     <Wrap>
       <div className="search-icon icon">
@@ -73,5 +65,9 @@ const Wrap = styled.div`
     font-size: 20px;
     color: #ccc;
     cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `;

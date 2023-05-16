@@ -3,11 +3,12 @@ import { styled } from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
-  max-width: 1300px;
+  max-width: 1400px;
+  padding: 0 20px;
 `;
 
 export const Title = styled.h2`
-  margin-bottom: 20px;
+  flex: 1;
 `;
 
 export const MovieList = styled.div`

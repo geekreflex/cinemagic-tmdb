@@ -43,8 +43,10 @@ const Dynamic = () => {
       {isLoading ? (
         <DynamicGrid />
       ) : (
-        <>
-          <Title>{titles[movie!]}</Title>
+        <Wrap>
+          <div className="title-wrap">
+            <Title>{titles[movie!]}</Title>
+          </div>
           <MovieList>
             {movies &&
               movies?.pages?.map((page, pageIndex) => (
@@ -65,13 +67,19 @@ const Dynamic = () => {
               </Button>
             </BtnWrap>
           )}
-        </>
+        </Wrap>
       )}
     </>
   );
 };
 
 export default Dynamic;
+
+const Wrap = styled.div`
+  .title-wrap {
+    margin-bottom: 20px;
+  }
+`;
 
 const BtnWrap = styled.div`
   display: flex;

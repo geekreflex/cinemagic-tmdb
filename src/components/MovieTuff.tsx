@@ -199,4 +199,8 @@ const Arrow = styled.div`
     margin-right: -40px;
     right: 0;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
