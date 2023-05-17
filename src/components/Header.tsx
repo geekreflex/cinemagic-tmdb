@@ -3,8 +3,16 @@ import { styled } from 'styled-components';
 import { Container } from '../styles/gobalStyles';
 import { IoMenu, IoSearch } from 'react-icons/io5';
 import SearchInput from './SearchInput';
+import { useDrawer } from '../contexts/drawer';
 
 const Header = () => {
+  const { openDrawer } = useDrawer();
+
+  const onFavoriteLink = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    openDrawer();
+  };
+
   return (
     <Wrap>
       <Container>
@@ -19,7 +27,9 @@ const Header = () => {
             <LinkList>
               <Link to="/">Movies</Link>
               <Link to="/tv-shows">Tv Shows</Link>
-              <Link to="/">Favorites</Link>
+              <Link to="/" onClick={onFavoriteLink}>
+                Favorites
+              </Link>
             </LinkList>
           </div>
           <SearchInput />
