@@ -32,7 +32,9 @@ const Header = () => {
               </Link>
             </LinkList>
           </div>
-          <SearchInput />
+          <div className="search-input">
+            <SearchInput />
+          </div>
           <div className="icon">
             <IoSearch />
           </div>
@@ -76,9 +78,13 @@ const Main = styled.div`
     display: none;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .icon {
       display: block;
+    }
+
+    .search-input {
+      display: none;
     }
   }
 `;
@@ -93,7 +99,7 @@ const LinkList = styled.div`
     font-weight: 600;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     display: none;
     .icon {
       display: block;
