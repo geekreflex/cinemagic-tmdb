@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { IMovie } from '../types/movie';
 
-const apiKey = import.meta.env.VITE_TMDB_API;
+// const apiKey = import.meta.env.VITE_TMDB_API;
 
 const token = import.meta.env.VITE_TMDB_API_TOKEN;
 const apiUrl =
@@ -14,7 +14,7 @@ const config = {
 };
 
 export const getMovies = async (key: string, nextPage = 1) => {
-  const { data } = await axios.get(`${apiUrl}/movie/${key}?api_key=${apiKey}`, {
+  const { data } = await axios.get(`${apiUrl}/movie/${key}`, {
     params: { page: nextPage },
     ...config,
   });
