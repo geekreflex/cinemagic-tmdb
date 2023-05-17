@@ -1,5 +1,4 @@
 import { styled } from 'styled-components';
-import { Button } from '../styles/gobalStyles';
 
 interface LoadMoreProps {
   fetching: boolean;

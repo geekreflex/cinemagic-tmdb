@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IMovie } from '../types/movie';
 
 const apiKey = import.meta.env.VITE_TMDB_API;
 
@@ -51,7 +52,7 @@ export const getLatestMovie = async () => {
 
 export const getMoviesDetailsBatch = async (
   movieIds: number[]
-): Promise<any[]> => {
+): Promise<IMovie[]> => {
   const response = await Promise.all(
     movieIds.map((movieId) => axios.get(`${apiUrl}/movie/${movieId}`, config))
   );

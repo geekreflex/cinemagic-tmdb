@@ -6,7 +6,6 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { styled } from 'styled-components';
 import { Button, MovieList } from '../styles/gobalStyles';
 import Movie from '../components/Movie';
-import Layout from '../components/Layout';
 import { DynamicGrid } from '../components/Skeleton';
 
 const Search = () => {

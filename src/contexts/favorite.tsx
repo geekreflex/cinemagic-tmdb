@@ -12,11 +12,9 @@ interface FavoriteMoviesContextProps {
   removeFromFavorites: (movieId: number) => void;
 }
 
-const FavoriteMoviesContext = createContext<FavoriteMoviesContextProps>({
-  favoriteMovies: [],
-  addToFavorites: () => {},
-  removeFromFavorites: () => {},
-});
+const FavoriteMoviesContext = createContext<
+  FavoriteMoviesContextProps | undefined
+>(undefined);
 
 export const FavoriteMoviesProvider: React.FC<{
   children: React.ReactNode;

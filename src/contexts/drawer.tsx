@@ -6,11 +6,7 @@ interface DrawerContextProps {
   closeDrawer: () => void;
 }
 
-const DrawerContext = createContext<DrawerContextProps>({
-  isOpen: false,
-  openDrawer: () => {},
-  closeDrawer: () => {},
-});
+const DrawerContext = createContext<DrawerContextProps | undefined>(undefined);
 
 interface DrawerProviderProps {
   children: React.ReactNode;

@@ -7,7 +7,7 @@ const SearchInput = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     navigate(`/search?q=${query}`);
   };

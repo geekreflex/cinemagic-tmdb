@@ -1,4 +1,4 @@
-export const truncate = (text: string, length: number = 250) => {
+export const truncate = (text: string, length = 250) => {
   if (!text) '';
 
   let boundaryIndex = length;
