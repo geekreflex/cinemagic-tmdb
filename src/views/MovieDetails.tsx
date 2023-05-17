@@ -5,15 +5,15 @@ import Image from '../components/Image';
 import { IMovie } from '../types/movie';
 import { styled } from 'styled-components';
 import SimilarMovies from '../components/SimilarMovies';
-import Genres from '../components/Genres';
 import { IoStar } from 'react-icons/io5';
 import { truncate } from '../utils/truncate';
 import { InfoLoading } from '../components/Skeleton';
 import { Title } from '../styles/gobalStyles';
 import { formatTime } from '../utils/time';
 import FavToggle from '../components/FavToggle';
+import MovieGenres from '../components/MovieGenres';
 
-const MovieInfo = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const {
     data: movie,
@@ -59,7 +59,7 @@ const MovieInfo = () => {
                     </Star>
                   </div>
                 </div>
-                <Genres genres={movie.genres} />
+                <MovieGenres genres={movie.genres} />
               </div>
             </div>
             <div className="backdrop">
@@ -74,7 +74,7 @@ const MovieInfo = () => {
   );
 };
 
-export default MovieInfo;
+export default MovieDetails;
 
 const Main = styled.div`
   .title-wrap {

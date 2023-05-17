@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Home from '../views/Home';
 import Dynamic from '../views/Dynamic';
-import MovieInfo from '../views/MovieInfo';
+import MovieInfo from '../views/MovieDetails';
 import Search from '../views/Search';
 import NotFound from '../views/404';
 

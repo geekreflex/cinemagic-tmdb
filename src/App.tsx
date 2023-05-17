@@ -3,7 +3,7 @@ import Home from './views/Home';
 import Dynamic from './views/Dynamic';
 import NotFound from './views/404';
 import Search from './views/Search';
-import MovieInfo from './views/MovieInfo';
+import MovieInfo from './views/MovieDetails';
 import Layout from './components/Layout';
 import TvShows from './views/TvShows';
 import { DrawerProvider } from './contexts/drawer';
