@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;900&family=Poppins:wght@400;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;900&family=Poppins:wght@400;900&display=swap");
 
 *,
 *::before,
@@ -10,7 +10,7 @@
 
 body {
   background-color: #181818;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   /* font-family: 'Poppins', sans-serif; */
   color: #fff;
 }
@@ -41,7 +41,7 @@ body {
 }
 
 .loadmore-btn {
-  background-color: #991605;
+  background-color: rgb(153, 22, 5);
   color: #fff;
   border: none;
   outline: none;
@@ -54,5 +54,5 @@ body {
 }
 
 .loadmore-btn:hover {
-  background-color: #da2911;
+  background-color: rgb(218, 41, 17);
 }
