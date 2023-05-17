@@ -60,3 +60,8 @@ export const getMoviesDetailsBatch = async (
   const movieDetails = response.map((response) => response.data);
   return movieDetails;
 };
+
+export const getMovieGenres = async () => {
+  const { data } = await axios.get(`${apiUrl}/genre/movie/list`, config);
+  return data;
+};

@@ -1,45 +1,109 @@
 import { styled } from 'styled-components';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { getMovieGenres } from '../api/movies';
+import { IGenre } from '../types/movie';
+import { createRef, useEffect, useRef, useState } from 'react';
+import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
 const Categories = () => {
+  const { data } = useQuery<void, unknown, IGenre>({
+    queryKey: ['movie-genres'],
+    queryFn: () => getMovieGenres(),
+  });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const refs = useRef<any>(data?.genres.map(() => createRef()));
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(false);
   const navigate = useNavigate();
-  const items = [
-    'Romance',
-    'Action',
-    'Drama',
-    'Horror',
-    'Comedy',
-    'Thriller',
-    'Fantasy',
-    'Music',
-    'Documentary',
-  ];
 
   const onClick = (item: string) => {
     navigate(`/search?q=${item}`);
   };
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    if (!container) {
+      return;
+    }
+
+    if (container.scrollWidth > container.clientWidth) {
+      setShowLeftArrow(container.scrollLeft > 0);
+      setShowRightArrow(
+        container.scrollLeft + container.clientWidth < container.scrollWidth
+      );
+    } else {
+      setShowLeftArrow(false);
+      setShowRightArrow(false);
+    }
+
+    const handleScroll = () => {
+      setShowLeftArrow(container.scrollLeft > 0);
+      setShowRightArrow(
+        container.scrollLeft + container.clientWidth < container.scrollWidth
+      );
+    };
+
+    container.addEventListener('scroll', handleScroll);
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const onScrollRight = () => {
+    containerRef.current?.scrollBy({
+      left: containerRef.current.clientWidth,
+      behavior: 'smooth',
+    });
+  };
+
+  const onScrollLeft = () => {
+    containerRef.current?.scrollBy({
+      left: -containerRef.current.clientWidth,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <Wrap>
-      <Main>
+      <div className={`arrow-box ${showLeftArrow && 'arrow-box-left'}`}>
+        {showLeftArrow && (
+          <button className="arrow arrow-left" onClick={onScrollLeft}>
+            <IoChevronBack />
+          </button>
+        )}
+      </div>
+      <Main ref={containerRef}>
         <div className="items">
           <AnimatePresence>
-            {items.map((item, index) => (
-              <motion.div
-                onClick={() => onClick(item)}
-                className="item"
-                key={item}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                {item}
-              </motion.div>
-            ))}
+            {data &&
+              data.genres.map((genre, index) => (
+                <motion.div
+                  ref={refs.current[index]}
+                  onClick={() => onClick(genre.name)}
+                  className="item"
+                  key={genre.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  {genre.name}
+                </motion.div>
+              ))}
           </AnimatePresence>
         </div>
       </Main>
+      <div className={`arrow-box ${showRightArrow && 'arrow-box-right'}`}>
+        {showRightArrow && (
+          <button className="arrow arrow-right" onClick={onScrollRight}>
+            <IoChevronForward />
+          </button>
+        )}
+      </div>
     </Wrap>
   );
 };
@@ -52,16 +116,70 @@ const Wrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .arrow-box {
+    width: 40px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 9;
+  }
+
+  .arrow-box-left::before,
+  .arrow-box-right:before {
+    content: '';
+    width: 30px;
+    height: 100%;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .arrow-box-right::before {
+    left: 0;
+    box-shadow: -15px 0px 10px -6px rgba(0, 0, 0, 0.4);
+  }
+
+  .arrow-box-left::before {
+    right: 0;
+    box-shadow: 15px 0px 10px -6px rgba(0, 0, 0, 0.4);
+  }
+
+  .arrow {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #ccc;
+    font-size: 20px;
+  }
 `;
 const Main = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 500px;
+  width: 900px;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background-color: transparent;
+  }
 
   .items {
     display: flex;
     gap: 15px;
+    width: max-content;
+    flex-wrap: nowrap;
+    position: relative;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+
     .item {
       padding: 8px 18px;
       border-radius: 20px;
@@ -69,6 +187,8 @@ const Main = styled.div`
       font-weight: 600;
       background-color: #222;
       font-size: 15px;
+      display: flex;
+      white-space: nowrap;
       &:hover {
         background-color: #111;
       }

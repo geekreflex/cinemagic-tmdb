@@ -26,3 +26,10 @@ export interface MovieData {
   total_pages: number | any;
   total_results: number | any;
 }
+
+export interface IGenre {
+  genres: {
+    id: number;
+    name: string;
+  }[];
+}
