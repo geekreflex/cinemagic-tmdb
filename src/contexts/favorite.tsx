@@ -26,7 +26,7 @@ export const FavoriteMoviesProvider: React.FC<{
 
   useEffect(() => {
     localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
-  });
+  }, [favoriteMovies]);
 
   const addToFavorites = (movieId: number) => {
     if (!favoriteMovies.includes(movieId)) {

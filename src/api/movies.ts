@@ -22,6 +22,7 @@ export const getMovies = async (key: string, nextPage = 1) => {
 export const getMovie = async (id: string | undefined) => {
   const { data } = await axios.get(`${apiUrl}/movie/${id}`, {
     ...config,
+    params: { append_to_response: 'videos', language: 'en-US' },
   });
   return data;
 };
@@ -51,8 +52,10 @@ export const getLatestMovie = async () => {
 export const getMoviesDetailsBatch = async (
   movieIds: number[]
 ): Promise<any[]> => {
-  const { data } = await axios.get(`${apiUrl}/movie/${movieIds.join(',')}`, {
-    ...config,
-  });
-  return data;
+  const response = await Promise.all(
+    movieIds.map((movieId) => axios.get(`${apiUrl}/movie/${movieId}`, config))
+  );
+  const movieDetails = response.map((response) => response.data);
+  console.log(movieDetails);
+  return movieDetails;
 };
