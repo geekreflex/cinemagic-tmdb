@@ -19,6 +19,7 @@ export interface IMovie {
     name: string;
   }[];
   videos: IMovieVideo;
+  images: IMovieImage;
 }
 
 export interface IMovieVideo {
@@ -30,6 +31,12 @@ export interface IMovieVideo {
     key: string;
     official: boolean;
   }[];
+}
+
+export interface IMovieImage {
+  backdrops: [];
+  logos: [];
+  posters: [];
 }
 
 export interface MovieData {

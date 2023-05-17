@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { IMovie } from '../types/movie';
 import MovieVideos from './MovieVidoes';
+import MoviesImages from './MoviesImages';
 
 interface DetailsProps {
   movie: IMovie;
@@ -12,6 +13,7 @@ const Details = ({ movie }: DetailsProps) => {
       <Main>
         <h3>{movie.title}</h3>
       </Main>
+      <MoviesImages images={movie.images} />
       <MovieVideos videos={movie.videos} />
     </Wrap>
   );
