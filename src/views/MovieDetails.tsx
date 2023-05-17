@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getMovie } from '../api/movies';
 import { IMovie } from '../types/movie';
 import SimilarMovies from '../components/SimilarMovies';
+import Details from '../components/Details';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -14,8 +15,8 @@ const MovieDetails = () => {
     <>
       {isLoading && 'Loading...'}
       {isError && 'Error'}
-      {JSON.stringify(data)}
-      <SimilarMovies id={movieId!} />
+      {data && <Details movie={data} />}
+      {movieId && <SimilarMovies id={movieId} />}
     </>
   );
 };

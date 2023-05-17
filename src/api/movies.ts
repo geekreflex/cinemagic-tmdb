@@ -24,7 +24,7 @@ export const getMovies = async (key: string, nextPage = 1) => {
 export const getMovie = async (id: string | undefined) => {
   const { data } = await axios.get(`${apiUrl}/movie/${id}`, {
     ...config,
-    params: { append_to_response: 'videos', language: 'en-US' },
+    params: { append_to_response: 'videos,images', language: 'en-US' },
   });
   return data;
 };

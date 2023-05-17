@@ -18,6 +18,18 @@ export interface IMovie {
     id: number;
     name: string;
   }[];
+  videos: IMovieVideo;
+}
+
+export interface IMovieVideo {
+  results: {
+    id: number;
+    site: string;
+    name: string;
+    type: string;
+    key: string;
+    official: boolean;
+  }[];
 }
 
 export interface MovieData {
