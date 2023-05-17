@@ -6,6 +6,7 @@ import Search from './views/Search';
 import MovieInfo from './views/MovieInfo';
 import Layout from './components/Layout';
 import TvShows from './views/TvShows';
+import Drawer from './components/Drawer';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
+      <Drawer />
     </Router>
   );
 };
