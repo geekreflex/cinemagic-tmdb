@@ -22,7 +22,7 @@ const Header = () => {
           </div>
           <div className="hd-left">
             <Link to="/" className="logo">
-              <h3>Movies</h3>
+              <h3>Flixplorer</h3>
             </Link>
             <LinkList>
               <Link to="/">Movies</Link>
