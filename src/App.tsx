@@ -7,21 +7,24 @@ import MovieInfo from './views/MovieInfo';
 import Layout from './components/Layout';
 import TvShows from './views/TvShows';
 import { DrawerProvider } from './contexts/drawer';
+import { FavoriteMoviesProvider } from './contexts/favorite';
 
 const App = () => {
   return (
     <Router>
       <DrawerProvider>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/tv-shows" element={<TvShows />} />
-            <Route path="/movies/:movie" element={<Dynamic />} />
-            <Route path="/movie/:movieId" element={<MovieInfo />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Layout>
+        <FavoriteMoviesProvider>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/tv-shows" element={<TvShows />} />
+              <Route path="/movies/:movie" element={<Dynamic />} />
+              <Route path="/movie/:movieId" element={<MovieInfo />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Layout>
+        </FavoriteMoviesProvider>
       </DrawerProvider>
     </Router>
   );

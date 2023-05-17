@@ -47,3 +47,12 @@ export const getLatestMovie = async () => {
   });
   return data;
 };
+
+export const getMoviesDetailsBatch = async (
+  movieIds: number[]
+): Promise<any[]> => {
+  const { data } = await axios.get(`${apiUrl}/movie/${movieIds.join(',')}`, {
+    ...config,
+  });
+  return data;
+};
