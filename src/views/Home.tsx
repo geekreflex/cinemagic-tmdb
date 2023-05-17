@@ -1,14 +1,13 @@
 import { styled } from 'styled-components';
-import MovieTuff from '../components/MovieTuff';
+import MovieList from '../components/MovieList';
 
 const Home = () => {
   return (
     <Main>
-      {/* <LatestMovie /> */}
-      <MovieTuff title="Popular" name="popular" />
-      <MovieTuff title="Top Rated" name="top_rated" />
-      <MovieTuff title="Upcoming" name="upcoming" />
-      <MovieTuff title="Now Playing" name="now_playing" />
+      <MovieList title="Popular" name="popular" />
+      <MovieList title="Top Rated" name="top_rated" />
+      <MovieList title="Upcoming" name="upcoming" />
+      <MovieList title="Now Playing" name="now_playing" />
     </Main>
   );
 };

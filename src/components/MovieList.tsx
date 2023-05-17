@@ -15,7 +15,7 @@ interface MovieTuffProps {
   name: string;
 }
 
-const MovieTuff = ({ title, name }: MovieTuffProps) => {
+const MovieList = ({ title, name }: MovieTuffProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showLeftArrow, setShowLeftArrow] = useState<boolean>(false);
   const [showRightArrow, setShowRightArrow] = useState<boolean>(false);
@@ -107,7 +107,7 @@ const MovieTuff = ({ title, name }: MovieTuffProps) => {
   );
 };
 
-export default MovieTuff;
+export default MovieList;
 
 const Wrap = styled.div`
   position: relative;
