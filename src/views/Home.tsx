@@ -6,7 +6,7 @@ const Home = () => {
     <Main>
       <MovieList title="Popular" name="popular" />
       <MovieList title="Top Rated" name="top_rated" />
-      <MovieList title="Upcoming" name="upcoming" />
+      <MovieList title="Coming Soon" name="upcoming" />
       <MovieList title="Now Playing" name="now_playing" />
     </Main>
   );

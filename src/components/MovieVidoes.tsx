@@ -12,8 +12,8 @@ const MovieVideos = ({ videos }: { videos: IMovieVideo }) => {
             <Video key={video.id}>
               <iframe
                 src={`https://www.youtube.com/embed/${video.key}`}
-                title={video.name}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                title="YouTube Video Player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               ></iframe>
             </Video>
