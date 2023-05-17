@@ -4,7 +4,8 @@ import { IMovie } from '../types/movie';
 const apiKey = import.meta.env.VITE_TMDB_API;
 
 const token = import.meta.env.VITE_TMDB_API_TOKEN;
-const apiUrl = import.meta.env.VITE_TMDB_URL_V3;
+const apiUrl =
+  import.meta.env.VITE_TMDB_URL_V3 || `https://api.themoviedb.org/3`;
 
 const config = {
   headers: {
