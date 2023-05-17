@@ -64,6 +64,11 @@ const Drawer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
+                style={{
+                  display: 'flex',
+                  height: '100%',
+                  overflowY: 'auto',
+                }}
               >
                 {children}
               </motion.div>

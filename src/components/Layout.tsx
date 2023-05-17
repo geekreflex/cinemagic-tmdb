@@ -4,12 +4,19 @@ import Header from './Header';
 import AnimPre from './anim/AnimPre';
 import Footer from './Footer';
 import Favorites from './Favorites';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div>
       <Header />

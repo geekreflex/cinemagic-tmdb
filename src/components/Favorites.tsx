@@ -6,12 +6,16 @@ import { getMoviesDetailsBatch } from '../api/movies';
 import Movie from './Movie';
 import { styled } from 'styled-components';
 import { Title } from '../styles/gobalStyles';
+import { useDrawer } from '../contexts/drawer';
 
 const Favorites: React.FC = () => {
   const { favoriteMovies } = useFavorite();
-  const { data } = useQuery({
+  const { isOpen, closeDrawer } = useDrawer();
+
+  const { data, isLoading } = useQuery({
     queryKey: ['favorite-movies'],
-    queryFn: () => getMoviesDetailsBatch([657, 557]),
+    queryFn: () => getMoviesDetailsBatch(favoriteMovies),
+    enabled: isOpen,
   });
   return (
     <Drawer>
@@ -19,9 +23,16 @@ const Favorites: React.FC = () => {
         <div className="title-wrap">
           <Title>Favorite Movies</Title>
         </div>
-        <MovieList>
-          {data && data.map((movie) => <Movie movie={movie} key={movie.id} />)}
-        </MovieList>
+        {isLoading ? (
+          'Loading...'
+        ) : (
+          <MovieList>
+            {data &&
+              data.map((movie) => (
+                <Movie click={closeDrawer} movie={movie} key={movie.id} />
+              ))}
+          </MovieList>
+        )}
       </Wrap>
     </Drawer>
   );
@@ -31,6 +42,7 @@ export default Favorites;
 
 const Wrap = styled.div`
   padding: 30px 20px;
+  width: 100%;
 
   .title-wrap {
     margin-bottom: 30px;
@@ -39,9 +51,11 @@ const Wrap = styled.div`
 
 const MovieList = styled.div`
   display: grid;
-  /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
   grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
-
   gap: 20px;
-  margin-bottom: 50px;
+  padding-bottom: 50px;
+
+  @media (max-width: 300px) {
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+  }
 `;

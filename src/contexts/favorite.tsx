@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 interface FavoriteMoviesContextProps {
   favoriteMovies: number[];
@@ -24,20 +30,29 @@ export const FavoriteMoviesProvider: React.FC<{
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
-  }, [favoriteMovies]);
+  const persistMovies = useCallback((movies: number[]) => {
+    localStorage.setItem('favoriteMovies', JSON.stringify(movies));
+  }, []);
 
-  const addToFavorites = (movieId: number) => {
-    if (!favoriteMovies.includes(movieId)) {
-      setFavoriteMovies([...favoriteMovies, movieId]);
-    }
-  };
+  const addToFavorites = useCallback(
+    (movieId: number) => {
+      if (!favoriteMovies.includes(movieId)) {
+        const updatedMovies = [...favoriteMovies, movieId];
+        setFavoriteMovies(updatedMovies);
+        persistMovies(updatedMovies);
+      }
+    },
+    [favoriteMovies, persistMovies]
+  );
 
-  const removeFromFavorites = (movieId: number) => {
-    const updatedMovies = favoriteMovies.filter((id) => id !== movieId);
-    setFavoriteMovies(updatedMovies);
-  };
+  const removeFromFavorites = useCallback(
+    (movieId: number) => {
+      const updatedMovies = favoriteMovies.filter((id) => id !== movieId);
+      setFavoriteMovies(updatedMovies);
+      persistMovies(updatedMovies);
+    },
+    [favoriteMovies, persistMovies]
+  );
 
   return (
     <FavoriteMoviesContext.Provider

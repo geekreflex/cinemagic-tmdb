@@ -9,13 +9,12 @@ import Genres from '../components/Genres';
 import { IoStar } from 'react-icons/io5';
 import { truncate } from '../utils/truncate';
 import { InfoLoading } from '../components/Skeleton';
-import { Button, Title } from '../styles/gobalStyles';
+import { Title } from '../styles/gobalStyles';
 import { formatTime } from '../utils/time';
-import { useFavorite } from '../contexts/favorite';
+import FavToggle from '../components/FavToggle';
 
 const MovieInfo = () => {
   const { movieId } = useParams();
-  const { addToFavorites } = useFavorite();
   const {
     data: movie,
     isLoading,
@@ -32,10 +31,10 @@ const MovieInfo = () => {
         <Main>
           <div className="title-wrap">
             <Title>{movie.title}</Title>
-            <Button onClick={() => addToFavorites(movie.id)}>Add To Fav</Button>
           </div>
           <InfoWrap>
             <div className="content">
+              <FavToggle id={movie.id} />
               <div className="details">
                 <div>
                   <h3>Overview</h3>
@@ -179,6 +178,7 @@ const InfoWrap = styled.div`
       padding: 20px;
       width: 100%;
       margin: 0;
+      position: relative;
     }
   }
 `;

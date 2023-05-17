@@ -8,14 +8,15 @@ import AnimMovie from './anim/AnimMovie';
 
 interface MovieProps {
   movie: IMovie;
+  click?: () => void;
 }
 
-const Movie = ({ movie }: MovieProps) => {
+const Movie = ({ movie, click }: MovieProps) => {
   const [visible, setVisible] = useState(false);
   return (
     <AnimMovie>
       <Card title={movie.title}>
-        <Link to={`/movie/${movie.id}`}>
+        <Link onClick={click} to={`/movie/${movie.id}`}>
           <div
             className="img-wrap"
             onMouseEnter={() => setVisible(true)}
@@ -27,7 +28,7 @@ const Movie = ({ movie }: MovieProps) => {
             <Image path={movie.poster_path} className="" />
           </div>
         </Link>
-        <Link className="title" to={`/movie/${movie.id}`}>
+        <Link onClick={click} className="title" to={`/movie/${movie.id}`}>
           {movie.title}
         </Link>
       </Card>

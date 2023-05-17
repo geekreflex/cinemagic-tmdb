@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { Button, MovieList, Title } from '../styles/gobalStyles';
+import { MovieList, Title } from '../styles/gobalStyles';
 import { styled } from 'styled-components';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getMovies } from '../api/movies';
@@ -8,6 +8,7 @@ import React from 'react';
 import Movie from '../components/Movie';
 import { underscore } from '../utils/hyphen';
 import { DynamicGrid } from '../components/Skeleton';
+import LoadMore from '../components/LoadMore';
 
 const Dynamic = () => {
   const { movie } = useParams();
@@ -58,14 +59,7 @@ const Dynamic = () => {
               ))}
           </MovieList>
           {hasNextPage && (
-            <BtnWrap>
-              <Button
-                onClick={() => fetchNextPage()}
-                disabled={isFetchingNextPage}
-              >
-                {isFetchingNextPage ? 'Loading more...' : 'Load more'}{' '}
-              </Button>
-            </BtnWrap>
+            <LoadMore fetch={fetchNextPage} fetching={isFetchingNextPage} />
           )}
         </Wrap>
       )}
@@ -79,11 +73,4 @@ const Wrap = styled.div`
   .title-wrap {
     margin-bottom: 20px;
   }
-`;
-
-const BtnWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
 `;

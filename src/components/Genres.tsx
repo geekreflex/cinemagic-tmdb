@@ -31,6 +31,7 @@ const Wrap = styled.div`
   .genre-list {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 
     a {
       color: #fff;

@@ -21,10 +21,12 @@ export const DrawerProvider: React.FC<DrawerProviderProps> = ({ children }) => {
 
   const openDrawer = (): void => {
     setIsOpen(true);
+    document.body.classList.add('overflow-hidden');
   };
 
   const closeDrawer = (): void => {
     setIsOpen(false);
+    document.body.classList.remove('overflow-hidden');
   };
 
   const contextValue: DrawerContextProps = {

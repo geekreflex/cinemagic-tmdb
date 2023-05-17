@@ -56,6 +56,5 @@ export const getMoviesDetailsBatch = async (
     movieIds.map((movieId) => axios.get(`${apiUrl}/movie/${movieId}`, config))
   );
   const movieDetails = response.map((response) => response.data);
-  console.log(movieDetails);
   return movieDetails;
 };
