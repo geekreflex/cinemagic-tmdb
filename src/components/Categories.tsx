@@ -1,26 +1,16 @@
 import { styled } from 'styled-components';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { getMovieGenres } from '../api/movies';
 import { IGenre } from '../types/movie';
 import { createRef, useEffect, useRef, useState } from 'react';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
-const Categories = () => {
-  const { data } = useQuery<void, unknown, IGenre>({
-    queryKey: ['movie-genres'],
-    queryFn: () => getMovieGenres(),
-  });
+const Categories = ({ data }: { data: IGenre }) => {
+  const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
-  const refs = useRef<any>(data?.genres.map(() => createRef()));
+  const refs = useRef<any>(data.genres.map(() => createRef()));
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
-  const navigate = useNavigate();
-
-  const onClick = (item: string) => {
-    navigate(`/search?q=${item}`);
-  };
 
   useEffect(() => {
     const container = containerRef.current;
@@ -67,6 +57,16 @@ const Categories = () => {
     });
   };
 
+  const onSelect = (genre: string, index: number) => {
+    refs.current[index].current.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'center',
+      block: 'nearest',
+    });
+
+    navigate(`/search?q=${genre.toLowerCase()}`);
+  };
+
   return (
     <Wrap>
       <div className={`arrow-box ${showLeftArrow && 'arrow-box-left'}`}>
@@ -83,7 +83,7 @@ const Categories = () => {
               data.genres.map((genre, index) => (
                 <motion.div
                   ref={refs.current[index]}
-                  onClick={() => onClick(genre.name)}
+                  onClick={() => onSelect(genre.name, index)}
                   className="item"
                   key={genre.id}
                   initial={{ opacity: 0, y: 20 }}

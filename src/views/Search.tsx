@@ -4,9 +4,10 @@ import { getSearch } from '../api/movies';
 import { MovieData } from '../types/movie';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { styled } from 'styled-components';
-import { Button, MovieList } from '../styles/gobalStyles';
+import { MovieList } from '../styles/gobalStyles';
 import Movie from '../components/Movie';
 import { DynamicGrid } from '../components/Skeleton';
+import LoadMore from '../components/LoadMore';
 
 const Search = () => {
   const location = useLocation();
@@ -53,11 +54,7 @@ const Search = () => {
         </MovieList>
       )}
       {hasNextPage && (
-        <BtnWrap>
-          <Button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
-            {isFetchingNextPage ? 'Loading more...' : 'Load more'}
-          </Button>
-        </BtnWrap>
+        <LoadMore fetch={fetchNextPage} fetching={isFetchingNextPage} />
       )}
     </Wrap>
   );
@@ -67,11 +64,4 @@ export default Search;
 
 const Wrap = styled.div`
   margin-bottom: 80px;
-`;
-
-const BtnWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
 `;

@@ -6,6 +6,7 @@ import Footer from './Footer';
 import Favorites from './Favorites';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import Genres from './Genres';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -17,12 +18,22 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
+  const validPath = () => {
+    if (pathname === '/' || pathname.startsWith('/movies/')) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <div>
       <Header />
       <Main>
         <AnimPre>
-          <Container>{children}</Container>
+          <Container>
+            {validPath() && <Genres />}
+            {children}
+          </Container>
         </AnimPre>
       </Main>
       <Footer />
