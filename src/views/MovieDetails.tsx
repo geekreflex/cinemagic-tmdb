@@ -5,7 +5,6 @@ import { IMovie } from '../types/movie';
 import SimilarMovies from '../components/SimilarMovies';
 import Details from '../components/Details';
 import { styled } from 'styled-components';
-import { Container } from '../styles/gobalStyles';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
