@@ -26,7 +26,7 @@ const MoviesImages = ({
 export default MoviesImages;
 
 const Wrap = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   margin-bottom: 100px;
 `;
 

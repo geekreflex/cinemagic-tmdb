@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { Container } from '../styles/gobalStyles';
+import { TMDB } from '../utils/image';
 
 const Footer = () => {
   return (
@@ -7,13 +8,13 @@ const Footer = () => {
       <Container>
         <Main>
           <div className="attribution">
-            This website uses the{' '}
+            Powered by{' '}
             <a
               href="https://www.themoviedb.org/documentation/api"
               target="_blank"
               rel="noopener noreferrer"
             >
-              TMDB API
+              <img src={TMDB} />
             </a>{' '}
           </div>
         </Main>
@@ -40,5 +41,9 @@ const Main = styled.div`
     font-weight: 900;
     text-decoration: none;
     color: #176e8b;
+
+    img {
+      width: 100px;
+    }
   }
 `;

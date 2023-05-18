@@ -23,13 +23,6 @@ const Details = ({ movie }: DetailsProps) => {
   return (
     <Wrap>
       <Main>
-        {images && images.logos[0]?.file_path && (
-          <Logo>
-            <img
-              src={`https://image.tmdb.org/t/p/original${images.logos[0].file_path}`}
-            />
-          </Logo>
-        )}
         <Content>
           <MovieTitle>{movie.title}</MovieTitle>
           <div className="sub-group">
@@ -73,7 +66,7 @@ const Main = styled.div`
 
 const Content = styled.div`
   position: absolute;
-  top: 400px;
+  top: 280px;
   left: 0;
   z-index: 99;
   left: 200px;
@@ -99,7 +92,7 @@ const Content = styled.div`
     width: 650px;
     line-height: 1.7;
     font-size: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     font-weight: 600;
   }
 
@@ -117,18 +110,9 @@ const Content = styled.div`
 `;
 
 const MovieTitle = styled.div`
-  font-size: 40px;
+  font-size: 60px;
   font-weight: 900;
-`;
-
-const Logo = styled.div`
-  top: 100px;
-  left: 200px;
-  right: 0;
-  position: absolute;
-  z-index: 2;
-
-  img {
-    width: 600px;
-  }
+  width: 600px;
+  line-height: 1;
+  margin-bottom: 20px;
 `;

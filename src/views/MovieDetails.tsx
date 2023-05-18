@@ -24,4 +24,6 @@ const MovieDetails = () => {
 
 export default MovieDetails;
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  min-height: 100vh;
+`;
