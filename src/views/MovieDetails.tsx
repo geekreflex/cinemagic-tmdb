@@ -4,6 +4,8 @@ import { getMovie } from '../api/movies';
 import { IMovie } from '../types/movie';
 import SimilarMovies from '../components/SimilarMovies';
 import Details from '../components/Details';
+import { styled } from 'styled-components';
+import { Container } from '../styles/gobalStyles';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -12,13 +14,15 @@ const MovieDetails = () => {
     queryFn: () => getMovie(movieId),
   });
   return (
-    <>
+    <Wrap>
       {isLoading && 'Loading...'}
       {isError && 'Error'}
       {data && <Details movie={data} />}
       {movieId && <SimilarMovies id={movieId} />}
-    </>
+    </Wrap>
   );
 };
 
 export default MovieDetails;
+
+const Wrap = styled.div``;

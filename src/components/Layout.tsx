@@ -25,15 +25,26 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return false;
   };
 
+  const isMovieDetails = () => {
+    if (pathname.startsWith('/movie')) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <div>
       <Header />
-      <Main>
+      <Main mt={!isMovieDetails() ? 'true' : 'false'}>
         <AnimPre>
-          <Container>
-            {validPath() && <Genres />}
-            {children}
-          </Container>
+          {isMovieDetails() ? (
+            <div>{children}</div>
+          ) : (
+            <Container>
+              {validPath() && <Genres />}
+              {children}
+            </Container>
+          )}
         </AnimPre>
       </Main>
       <Footer />
@@ -44,7 +55,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 export default Layout;
 
-const Main = styled.div`
-  margin: 50px 0;
+const Main = styled.div<any>`
+  margin-bottom: 50px 0;
+  margin-top: ${(props) => (props.mt === 'true' ? '50px' : 0)};
   min-height: 90vh;
 `;

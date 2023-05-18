@@ -34,7 +34,9 @@ export interface IMovieVideo {
 }
 
 export interface IMovieImage {
-  backdrops: [];
+  backdrops: [
+    { width: number; height: number; aspect_ratio: number; file_path: string }
+  ];
   logos: [];
   posters: [];
 }
