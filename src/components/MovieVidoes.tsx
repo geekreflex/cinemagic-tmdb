@@ -35,7 +35,6 @@ const MovieVideos = ({ videos }: { videos: IMovieVideo }) => {
                   <iframe
                     title="YouTube Video"
                     src={`https://www.youtube.com/embed/${video.key}?rel=0`}
-                    frameBorder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
@@ -84,5 +83,9 @@ const Video = styled.div`
   .iframe-wrap {
     width: 560px;
     height: 315px;
+  }
+  p {
+    font-weight: 600;
+    margin-left: 20px;
   }
 `;

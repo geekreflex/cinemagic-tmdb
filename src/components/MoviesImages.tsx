@@ -2,7 +2,8 @@ import { styled } from 'styled-components';
 import { IMovieImage } from '../types/movie';
 import { createRef, useEffect, useRef, useState } from 'react';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { Placeholder } from '../utils/image';
 
 const MoviesImages = ({
   images,
@@ -12,6 +13,7 @@ const MoviesImages = ({
   backdrop: string;
 }) => {
   const url = `https://image.tmdb.org/t/p/w300`;
+  const originalUrl = `https://image.tmdb.org/t/p/original`;
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentImg, setCurrentImg] = useState('');
   const refs = useRef<any>(images.backdrops.map(() => createRef()));
@@ -20,8 +22,11 @@ const MoviesImages = ({
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    if (images) {
-      setCurrentImg(images.backdrops[0].file_path);
+    if (images && images.backdrops.length > 0) {
+      const url = `${originalUrl}${images.backdrops[0].file_path || backdrop}`;
+      setCurrentImg(url);
+    } else {
+      setCurrentImg(Placeholder);
     }
   }, [images]);
 
@@ -75,7 +80,7 @@ const MoviesImages = ({
       inline: 'center',
       block: 'nearest',
     });
-    setCurrentImg(path);
+    setCurrentImg(`${originalUrl}${path}`);
   };
 
   const onImgLoad = () => {
@@ -89,19 +94,17 @@ const MoviesImages = ({
   return (
     <Wrap>
       <Jumbotron>
-        <AnimatePresence>
-          <motion.img
-            key={currentImg}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            onLoad={onImgLoad}
-            style={{ opacity: isAnimating ? 0 : 1 }}
-            onAnimationComplete={onAdnimtionComplete}
-            src={`https://image.tmdb.org/t/p/original${
-              currentImg || images.backdrops[0]?.file_path || backdrop
-            }`}
-          />
-        </AnimatePresence>
+        <motion.img
+          key={currentImg}
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          onLoad={onImgLoad}
+          style={{ opacity: isAnimating ? 0 : 1 }}
+          onAnimationComplete={onAdnimtionComplete}
+          src={currentImg}
+        />
         <div className="gradient-left"></div>
         <div className="gradient-bottom"></div>
       </Jumbotron>
@@ -120,8 +123,8 @@ const MoviesImages = ({
         </Arrow>
         <ImageListWrap ref={containerRef}>
           <div className="image-list">
-            {images.backdrops.map((image, index) => (
-              <motion.div
+            {images?.backdrops?.map((image, index) => (
+              <motion.img
                 ref={refs.current[index]}
                 className="image"
                 onClick={() => onSelect(image.file_path, index)}
@@ -130,9 +133,8 @@ const MoviesImages = ({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <img src={url + image.file_path} />
-              </motion.div>
+                src={url + image.file_path}
+              />
             ))}
           </div>
         </ImageListWrap>

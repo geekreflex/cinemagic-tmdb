@@ -52,7 +52,7 @@ const Details = ({ movie }: DetailsProps) => {
           </Content>
         </Container>
       </Main>
-      {images && (
+      {images?.backdrops && (
         <MoviesImages images={images} backdrop={movie.backdrop_path} />
       )}
       <MovieVideos videos={movie.videos} />
