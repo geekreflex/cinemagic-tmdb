@@ -14,9 +14,11 @@ const MovieDetails = () => {
   });
   return (
     <Wrap>
-      {isLoading && 'Loading...'}
-      {isError && 'Error'}
-      {data && <Details movie={data} />}
+      <Main>
+        {isLoading && 'Loading...'}
+        {isError && 'Error'}
+        {data && <Details movie={data} />}
+      </Main>
       {movieId && <SimilarMovies id={movieId} />}
     </Wrap>
   );
@@ -24,6 +26,8 @@ const MovieDetails = () => {
 
 export default MovieDetails;
 
-const Wrap = styled.div`
+const Wrap = styled.div``;
+
+const Main = styled.div`
   min-height: 100vh;
 `;

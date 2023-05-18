@@ -20,7 +20,7 @@ const SimilarMovies = ({ id }: { id: string }) => {
         ) : (
           <MovieList>
             {movies &&
-              movies.results.map((movie) => {
+              movies.results.slice(0, 18).map((movie) => {
                 return <Movie movie={movie} key={movie.id} />;
               })}
           </MovieList>

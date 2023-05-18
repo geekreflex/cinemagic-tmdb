@@ -54,7 +54,7 @@ const Jumbotron = styled.div`
   }
   .gradient-bottom {
     position: absolute;
-    height: 350px;
+    height: 50vh;
     width: 100%;
     bottom: 0;
     background: linear-gradient(

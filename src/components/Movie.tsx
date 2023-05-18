@@ -23,7 +23,7 @@ const Movie = ({ movie, click }: MovieProps) => {
             onMouseLeave={() => setVisible(false)}
           >
             <Content visible={visible.toString()}>
-              <p>{truncate(movie.overview, 100)}</p>
+              <p>{truncate(movie.overview, 60)}</p>
             </Content>
             <Image path={movie.poster_path} className="" />
           </div>

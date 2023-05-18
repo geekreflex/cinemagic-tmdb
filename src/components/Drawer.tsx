@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import { useDrawer } from '../contexts/drawer';
 import React from 'react';
+import { styled } from 'styled-components';
 
 const Drawer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isOpen, closeDrawer } = useDrawer();
@@ -20,7 +21,7 @@ const Drawer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <AnimatePresence>
-      <>
+      <Wrap>
         {isOpen && (
           <AnimatePresence>
             <motion.div
@@ -55,7 +56,7 @@ const Drawer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 height: '100%',
                 background: '#111111',
                 boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
-                zIndex: 999,
+                zIndex: 999998,
                 borderLeft: '1px solid #242424',
               }}
             >
@@ -75,9 +76,11 @@ const Drawer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             </motion.div>
           </AnimatePresence>
         )}
-      </>
+      </Wrap>
     </AnimatePresence>
   );
 };
 
 export default Drawer;
+
+const Wrap = styled.div``;

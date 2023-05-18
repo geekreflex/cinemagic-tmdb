@@ -28,6 +28,12 @@ const MovieGenres = ({ genres }: GenresProps) => {
 export default MovieGenres;
 
 const Wrap = styled.div`
+  h3 {
+    margin-left: 20px;
+    margin-bottom: 5px;
+    color: #ccc;
+    font-weight: 600;
+  }
   .genre-list {
     display: flex;
     gap: 10px;
@@ -39,11 +45,16 @@ const Wrap = styled.div`
     }
 
     .genre {
-      background-color: #242424;
-      padding: 4px 15px;
-      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 6px 16px;
+      border-radius: 30px;
       font-weight: 600;
       font-size: 14px;
+      transition: all 300ms linear;
+      &:hover {
+        background-color: #ccc;
+        color: #242424;
+      }
     }
   }
 `;

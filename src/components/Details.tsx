@@ -9,6 +9,8 @@ import { IMDB1 } from '../utils/image';
 import { IoCalendar, IoTimeOutline } from 'react-icons/io5';
 import { formatDate, formatTime } from '../utils/time';
 import { truncate } from '../utils/truncate';
+import { Container } from '../styles/gobalStyles';
+import MovieGenres from './MovieGenres';
 
 interface DetailsProps {
   movie: IMovie;
@@ -23,28 +25,31 @@ const Details = ({ movie }: DetailsProps) => {
   return (
     <Wrap>
       <Main>
-        <Content>
-          <MovieTitle>{movie.title}</MovieTitle>
-          <div className="sub-group">
-            <div className="rating deets">
-              <img src={IMDB1} />
-              {movie.vote_average.toFixed(1)}
+        <Container>
+          <Content>
+            <MovieTitle>{movie.title}</MovieTitle>
+            <div className="sub-group">
+              <div className="rating deets">
+                <img src={IMDB1} />
+                {movie.vote_average.toFixed(1)}
+              </div>
+              <div className="runtime deets">
+                <span>
+                  <IoTimeOutline />
+                </span>
+                {formatTime(movie.runtime)}
+              </div>
+              <div className="release deets">
+                <span>
+                  <IoCalendar />
+                </span>
+                {formatDate(movie.release_date)}
+              </div>
             </div>
-            <div className="runtime deets">
-              <span>
-                <IoTimeOutline />
-              </span>
-              {formatTime(movie.runtime)}
-            </div>
-            <div className="release deets">
-              <span>
-                <IoCalendar />
-              </span>
-              {formatDate(movie.release_date)}
-            </div>
-          </div>
-          <p className="overview">{truncate(movie.overview)}</p>
-        </Content>
+            <p className="overview">{truncate(movie.overview)}</p>
+            <MovieGenres genres={movie.genres} />
+          </Content>
+        </Container>
         {images && (
           <MoviesImages images={images} backdrop={movie.backdrop_path} />
         )}
@@ -67,9 +72,7 @@ const Main = styled.div`
 const Content = styled.div`
   position: absolute;
   top: 280px;
-  left: 0;
   z-index: 99;
-  left: 200px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -89,7 +92,7 @@ const Content = styled.div`
   }
 
   .overview {
-    width: 650px;
+    width: 500px;
     line-height: 1.7;
     font-size: 16px;
     margin-bottom: 10px;
