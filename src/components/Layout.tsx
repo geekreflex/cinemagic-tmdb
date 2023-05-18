@@ -57,6 +57,6 @@ export default Layout;
 
 const Main = styled.div<any>`
   margin-bottom: 50px 0;
-  margin-top: ${(props) => (props.mt === 'true' ? '50px' : 0)};
+  margin-top: ${(props) => (props.mt === 'true' ? '120px' : 0)};
   min-height: 90vh;
 `;

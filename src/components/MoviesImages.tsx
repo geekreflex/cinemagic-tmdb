@@ -29,14 +29,13 @@ const Jumbotron = styled.div`
   .gradient-left {
     position: absolute;
     height: 100%;
-    width: 1000px;
+    width: 60vw;
     left: 0;
     background: linear-gradient(
       to right,
       #181818,
-      #18181890,
-      #18181850,
-      #18181820,
+      #181818,
+      /* #18181850, */ #18181820,
       transparent
     );
   }
