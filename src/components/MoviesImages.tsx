@@ -48,7 +48,7 @@ const Jumbotron = styled.div`
       to right,
       #181818,
       #181818,
-      /* #18181850, */ #18181820,
+      #18181890,
       transparent
     );
   }
@@ -57,7 +57,6 @@ const Jumbotron = styled.div`
     height: 350px;
     width: 100%;
     bottom: 0;
-    /* border: 1px solid red; */
     background: linear-gradient(
       to top,
       #181818,

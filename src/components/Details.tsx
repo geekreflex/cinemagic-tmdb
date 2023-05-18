@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { IMovieImage } from '../types/movie';
 import { IMDB1 } from '../utils/image';
 import { IoCalendar, IoTimeOutline } from 'react-icons/io5';
-import { formatTime } from '../utils/time';
+import { formatDate, formatTime } from '../utils/time';
 import { truncate } from '../utils/truncate';
 
 interface DetailsProps {
@@ -47,7 +47,7 @@ const Details = ({ movie }: DetailsProps) => {
               <span>
                 <IoCalendar />
               </span>
-              October, 14 2023
+              {formatDate(movie.release_date)}
             </div>
           </div>
           <p className="overview">{truncate(movie.overview)}</p>
@@ -77,12 +77,14 @@ const Content = styled.div`
   left: 0;
   z-index: 99;
   left: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
   .sub-group {
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-bottom: 10px;
 
     .deets {
       display: flex;
@@ -95,9 +97,10 @@ const Content = styled.div`
 
   .overview {
     width: 650px;
-    line-height: 1.5;
+    line-height: 1.7;
     font-size: 16px;
     margin-bottom: 30px;
+    font-weight: 600;
   }
 
   .rating {

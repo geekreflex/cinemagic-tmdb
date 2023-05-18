@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export function formatTime(minutes: number | null): string {
   if (!minutes) {
     return 'null';
@@ -8,3 +10,11 @@ export function formatTime(minutes: number | null): string {
   const formattedTime = `${hours}h ${remainingMinutes}m`;
   return formattedTime;
 }
+
+export const formatDate = (date: string | null): string => {
+  if (!date) {
+    return 'null';
+  }
+
+  return moment(date).format('MMMM, Do YYYY');
+};
