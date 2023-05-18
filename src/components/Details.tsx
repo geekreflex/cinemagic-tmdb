@@ -23,14 +23,14 @@ const Details = ({ movie }: DetailsProps) => {
   return (
     <Wrap>
       <Main>
+        {images && images.logos[0]?.file_path && (
+          <Logo>
+            <img
+              src={`https://image.tmdb.org/t/p/original${images.logos[0].file_path}`}
+            />
+          </Logo>
+        )}
         <Content>
-          {images && (
-            <Logo>
-              <img
-                src={`https://image.tmdb.org/t/p/original${images.logos[0].file_path}`}
-              />
-            </Logo>
-          )}
           <MovieTitle>{movie.title}</MovieTitle>
           <div className="sub-group">
             <div className="rating deets">
@@ -52,7 +52,9 @@ const Details = ({ movie }: DetailsProps) => {
           </div>
           <p className="overview">{truncate(movie.overview)}</p>
         </Content>
-        {images && <MoviesImages images={images} />}
+        {images && (
+          <MoviesImages images={images} backdrop={movie.backdrop_path} />
+        )}
       </Main>
       <MovieVideos videos={movie.videos} image={movie.backdrop_path} />
     </Wrap>
@@ -65,11 +67,13 @@ const Wrap = styled.div`
   margin-bottom: 100px;
 `;
 
-const Main = styled.div``;
+const Main = styled.div`
+  position: relative;
+`;
 
 const Content = styled.div`
   position: absolute;
-  top: 230px;
+  top: 400px;
   left: 0;
   z-index: 99;
   left: 200px;
@@ -115,7 +119,11 @@ const MovieTitle = styled.div`
 `;
 
 const Logo = styled.div`
-  margin-bottom: 30px;
+  top: 100px;
+  left: 200px;
+  right: 0;
+  position: absolute;
+  z-index: 2;
 
   img {
     width: 600px;

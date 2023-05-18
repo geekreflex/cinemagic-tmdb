@@ -1,12 +1,20 @@
 import { styled } from 'styled-components';
 import { IMovieImage } from '../types/movie';
 
-const MoviesImages = ({ images }: { images: IMovieImage }) => {
+const MoviesImages = ({
+  images,
+  backdrop,
+}: {
+  images: IMovieImage;
+  backdrop: string;
+}) => {
   return (
     <Wrap>
       <Jumbotron>
         <img
-          src={`https://image.tmdb.org/t/p/original${images.backdrops[0].file_path}`}
+          src={`https://image.tmdb.org/t/p/original${
+            images.backdrops[0]?.file_path || backdrop
+          }`}
         />
         <div className="gradient-left"></div>
         <div className="gradient-bottom"></div>
@@ -17,7 +25,10 @@ const MoviesImages = ({ images }: { images: IMovieImage }) => {
 
 export default MoviesImages;
 
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  height: 100vh;
+  margin-bottom: 100px;
+`;
 
 const Jumbotron = styled.div`
   width: 100%;

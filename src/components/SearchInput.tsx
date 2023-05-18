@@ -36,11 +36,13 @@ const SearchInput = () => {
 export default SearchInput;
 
 const Wrap = styled.div`
-  background-color: #111111;
+  background-color: rgba(17, 17, 17, 0.8);
   border-radius: 12px;
   display: flex;
   width: 350px;
   border: 1px solid #242424;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   form {
     display: flex;
     flex: 1;
