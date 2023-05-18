@@ -3,7 +3,7 @@ import { IMovieImage } from '../types/movie';
 
 const MoviesImages = ({ images }: { images: IMovieImage }) => {
   return (
-    <div>
+    <Wrap>
       <Jumbotron>
         <img
           src={`https://image.tmdb.org/t/p/original${images.backdrops[0].file_path}`}
@@ -11,11 +11,13 @@ const MoviesImages = ({ images }: { images: IMovieImage }) => {
         <div className="gradient-left"></div>
         <div className="gradient-bottom"></div>
       </Jumbotron>
-    </div>
+    </Wrap>
   );
 };
 
 export default MoviesImages;
+
+const Wrap = styled.div``;
 
 const Jumbotron = styled.div`
   width: 100%;

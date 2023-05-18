@@ -67,7 +67,12 @@ export const getMovieGenres = async () => {
 };
 
 export const getMovieImages = async (id: number) => {
-  const { data } = await axios.get(`${apiUrl}/movie/${id}/images`, config);
+  const { data } = await axios.get(`${apiUrl}/movie/${id}/images`, {
+    ...config,
+    params: {
+      include_image_language: 'en',
+    },
+  });
   console.log('IMG', data);
   return data;
 };

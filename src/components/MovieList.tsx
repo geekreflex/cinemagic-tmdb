@@ -4,7 +4,11 @@ import { getMovies } from '../api/movies';
 import Movie from './Movie';
 import { styled } from 'styled-components';
 import { useEffect, useRef, useState } from 'react';
-import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
+import {
+  IoArrowForward,
+  IoChevronBack,
+  IoChevronForward,
+} from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { hyphen } from '../utils/hyphen';
 import { Title } from '../styles/gobalStyles';
@@ -72,9 +76,11 @@ const MovieList = ({ title, name }: MovieTuffProps) => {
     <Wrap>
       <TopSect>
         <Title>{title}</Title>
-        <Link to={`/movies/${hyphen(name)}`}>
-          <span>All movies</span>
-          <IoChevronForward />
+        <Link to={`/movies/${hyphen(name)}`} className="see-more">
+          All movies
+          <span>
+            <IoArrowForward />
+          </span>
         </Link>
       </TopSect>
       <Arrow>
@@ -142,6 +148,10 @@ const TopSect = styled.div`
   height: 80px;
   align-items: center;
 
+  .see-more {
+    margin-right: 50px;
+  }
+
   a {
     text-decoration: none;
     color: inherit;
@@ -151,14 +161,18 @@ const TopSect = styled.div`
     font-size: 15px;
     color: #ccc;
     transition: all 300ms;
+    width: 150px;
+    padding: 5px;
     &:hover {
       span {
-        margin-right: 20px;
+        margin-left: 30px;
       }
     }
     span {
-      margin-right: 10px;
+      display: flex;
       transition: all 300ms;
+      margin-left: 10px;
+      font-size: 16px;
     }
   }
 `;

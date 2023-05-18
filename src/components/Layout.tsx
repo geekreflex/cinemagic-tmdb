@@ -26,7 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   };
 
   const isMovieDetails = () => {
-    if (pathname.startsWith('/movie')) {
+    if (pathname.startsWith('/movie/')) {
       return true;
     }
     return false;
@@ -56,7 +56,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 export default Layout;
 
 const Main = styled.div<any>`
-  margin-bottom: 50px 0;
+  margin-bottom: 100px;
   margin-top: ${(props) => (props.mt === 'true' ? '120px' : 0)};
   min-height: 90vh;
 `;

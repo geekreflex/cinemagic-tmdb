@@ -33,12 +33,17 @@ export interface IMovieVideo {
   }[];
 }
 
+interface IImageItem {
+  width: number;
+  height: number;
+  aspect_ratio: number;
+  file_path: string;
+}
+
 export interface IMovieImage {
-  backdrops: [
-    { width: number; height: number; aspect_ratio: number; file_path: string }
-  ];
-  logos: [];
-  posters: [];
+  backdrops: IImageItem[];
+  logos: IImageItem[];
+  posters: IImageItem[];
 }
 
 export interface MovieData {
