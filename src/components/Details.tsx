@@ -47,14 +47,15 @@ const Details = ({ movie }: DetailsProps) => {
               </div>
             </div>
             <p className="overview">{truncate(movie.overview)}</p>
+
             <MovieGenres genres={movie.genres} />
           </Content>
         </Container>
-        {images && (
-          <MoviesImages images={images} backdrop={movie.backdrop_path} />
-        )}
       </Main>
-      <MovieVideos videos={movie.videos} image={movie.backdrop_path} />
+      {images && (
+        <MoviesImages images={images} backdrop={movie.backdrop_path} />
+      )}
+      <MovieVideos videos={movie.videos} />
     </Wrap>
   );
 };
@@ -67,15 +68,16 @@ const Wrap = styled.div`
 
 const Main = styled.div`
   position: relative;
+  min-height: 120vh;
+  z-index: 999;
 `;
 
 const Content = styled.div`
-  position: absolute;
-  top: 280px;
-  z-index: 99;
+  top: 200px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative;
 
   .sub-group {
     display: flex;

@@ -2,13 +2,7 @@ import { styled } from 'styled-components';
 import { IMovieVideo } from '../types/movie';
 import { Container, Title } from '../styles/gobalStyles';
 
-const MovieVideos = ({
-  videos,
-  image,
-}: {
-  videos: IMovieVideo;
-  image: string;
-}) => {
+const MovieVideos = ({ videos }: { videos: IMovieVideo }) => {
   const filteredVideos = videos.results.filter(
     (video) => video.type === 'Trailer' || video.type === 'Teaser'
   );
@@ -62,6 +56,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  position: relative;
 `;
 
 const Main = styled.div`

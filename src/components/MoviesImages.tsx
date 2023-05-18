@@ -27,13 +27,17 @@ export default MoviesImages;
 
 const Wrap = styled.div`
   min-height: 100vh;
+  width: 100%;
   margin-bottom: 100px;
+  top: 0;
+  position: absolute;
 `;
 
 const Jumbotron = styled.div`
   width: 100%;
-  position: relative;
   display: flex;
+  top: 0;
+  left: 0;
 
   img {
     width: 100%;

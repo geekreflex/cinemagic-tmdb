@@ -40,7 +40,8 @@ body {
   overflow: hidden;
 }
 
-.loadmore-btn {
+.loadmore-btn,
+.btn {
   background-color: rgb(153, 22, 5);
   color: #fff;
   border: none;
@@ -53,7 +54,8 @@ body {
   transition: all 300ms;
 }
 
-.loadmore-btn:hover {
+.loadmore-btn:hover,
+.btn:hover {
   background-color: rgb(218, 41, 17);
 }
 

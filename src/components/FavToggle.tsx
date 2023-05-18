@@ -27,11 +27,9 @@ const FavToggle = ({ id }: FavToggleProps) => {
 export default FavToggle;
 
 const Fav = styled.div`
-  position: absolute;
   font-size: 30px;
   display: flex;
   cursor: pointer;
-  top: 20px;
 
   @media (max-width: 768px) {
     top: 0px;
