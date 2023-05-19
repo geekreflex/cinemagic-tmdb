@@ -1,28 +1,31 @@
 import { styled } from 'styled-components';
 import { IMovieVideo } from '../types/movie';
-import { Container, Title } from '../styles/gobalStyles';
-import { IoHeart, IoHeartOutline, IoPlayCircle } from 'react-icons/io5';
+import { IoHeartOutline, IoPlayCircle } from 'react-icons/io5';
 
 const MovieVideos = ({ videos }: { videos: IMovieVideo }) => {
-  const filteredVideos = videos.results.filter(
-    (video) => video.type === 'Trailer' || video.type === 'Teaser'
-  );
+  console.log(videos);
 
-  const sortedVideos = [...filteredVideos].sort((a, b) => {
-    if (a.official === b.official) {
-      if (a.type === b.type) {
-        return 0;
-      } else if (a.type === 'Trailer') {
-        return -1;
-      } else {
-        return 1;
-      }
-    } else if (a.official) {
-      return -1;
-    } else {
-      return 1;
-    }
-  });
+  // TODO
+
+  // const filteredVideos = videos.results.filter(
+  //   (video) => video.type === 'Trailer' || video.type === 'Teaser'
+  // );
+
+  // const sortedVideos = [...filteredVideos].sort((a, b) => {
+  //   if (a.official === b.official) {
+  //     if (a.type === b.type) {
+  //       return 0;
+  //     } else if (a.type === 'Trailer') {
+  //       return -1;
+  //     } else {
+  //       return 1;
+  //     }
+  //   } else if (a.official) {
+  //     return -1;
+  //   } else {
+  //     return 1;
+  //   }
+  // });
 
   return (
     <Wrap>
