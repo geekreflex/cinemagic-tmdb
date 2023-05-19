@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Container } from '../styles/gobalStyles';
 import { IoMenu, IoSearch } from 'react-icons/io5';
@@ -6,11 +6,20 @@ import SearchInput from './SearchInput';
 import { useDrawer } from '../contexts/drawer';
 
 const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const { openDrawer } = useDrawer();
 
   const onFavoriteLink = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     openDrawer();
+  };
+
+  const isSearchPage = () => {
+    if (location.pathname.startsWith('/search')) {
+      return true;
+    }
+    return false;
   };
 
   return (
@@ -33,10 +42,14 @@ const Header = () => {
             </LinkList>
           </div>
           <div className="search-input">
-            <SearchInput />
+            {!isSearchPage() && <SearchInput />}
           </div>
-          <div className="icon">
-            <IoSearch />
+          <div className="icon" onClick={() => navigate('/search')}>
+            {!isSearchPage() && (
+              <span>
+                <IoSearch />
+              </span>
+            )}
           </div>
         </Main>
       </Container>
@@ -84,11 +97,19 @@ const Main = styled.div`
     cursor: pointer;
     display: flex;
     display: none;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      display: flex;
+    }
   }
 
   @media (max-width: 900px) {
     .icon {
-      display: block;
+      display: flex;
     }
 
     .search-input {

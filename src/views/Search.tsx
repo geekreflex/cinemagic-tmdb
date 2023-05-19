@@ -8,6 +8,7 @@ import { MovieList } from '../styles/gobalStyles';
 import Movie from '../components/Movie';
 import { DynamicGrid } from '../components/Skeleton';
 import LoadMore from '../components/LoadMore';
+import SearchInput from '../components/SearchInput';
 
 const Search = () => {
   const location = useLocation();
@@ -39,6 +40,11 @@ const Search = () => {
 
   return (
     <Wrap>
+      <div className="input-wrap">
+        <div className="inner">
+          <SearchInput q={search || ''} />
+        </div>
+      </div>
       {isLoading ? (
         <DynamicGrid />
       ) : (
@@ -64,4 +70,17 @@ export default Search;
 
 const Wrap = styled.div`
   margin-bottom: 80px;
+  width: 100%;
+
+  .input-wrap {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    margin-bottom: 30px;
+    max-width: 100%;
+  }
+
+  .inner {
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 25px 20px -20px;
+  }
 `;
