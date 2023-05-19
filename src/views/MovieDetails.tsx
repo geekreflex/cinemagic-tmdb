@@ -29,5 +29,5 @@ export default MovieDetails;
 const Wrap = styled.div``;
 
 const Main = styled.div`
-  min-height: 100vh;
+  /* min-height: 100vh; */
 `;

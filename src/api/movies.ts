@@ -73,6 +73,5 @@ export const getMovieImages = async (id: number) => {
       include_image_language: 'en',
     },
   });
-  console.log('IMG', data);
   return data;
 };

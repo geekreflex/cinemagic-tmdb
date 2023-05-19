@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { IMovieVideo } from '../types/movie';
 import { Container, Title } from '../styles/gobalStyles';
+import { IoPlayCircle } from 'react-icons/io5';
 
 const MovieVideos = ({ videos }: { videos: IMovieVideo }) => {
   const filteredVideos = videos.results.filter(
@@ -26,23 +27,14 @@ const MovieVideos = ({ videos }: { videos: IMovieVideo }) => {
   return (
     <Wrap>
       <Container>
-        <Title className="title-mb">Videos</Title>
         <Main>
-          <VideoList>
-            {sortedVideos.slice(0, 2).map((video) => (
-              <Video>
-                <div className="iframe-wrap">
-                  <iframe
-                    title="YouTube Video"
-                    src={`https://www.youtube.com/embed/${video.key}?rel=0`}
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-                <p>{video.type}</p>
-              </Video>
-            ))}
-          </VideoList>
+          <button>
+            Watch Now
+            <span>
+              <IoPlayCircle />
+            </span>
+          </button>
+          <button>Add to Favorites</button>
         </Main>
       </Container>
     </Wrap>
@@ -54,38 +46,17 @@ export default MovieVideos;
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
   position: relative;
+  width: 100%;
 `;
 
 const Main = styled.div`
-  overflow-x: scroll;
-  &::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-    background-color: transparent;
-  }
+  width: 100%;
 `;
 
 const VideoList = styled.div`
   display: flex;
   gap: 20px;
-`;
-
-const Video = styled.div`
-  iframe {
-    border: none;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-  }
-
-  .iframe-wrap {
-    width: 560px;
-    height: 315px;
-  }
-  p {
-    font-weight: 600;
-    margin-left: 20px;
-  }
+  flex-wrap: wrap;
+  width: 100%;
 `;

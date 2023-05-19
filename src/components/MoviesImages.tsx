@@ -146,12 +146,19 @@ const MoviesImages = ({
 export default MoviesImages;
 
 const Wrap = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   margin-bottom: 100px;
   top: 0;
   position: absolute;
   overflow: hidden;
+  z-index: 999;
+
+  @media (max-width: 900px) {
+    position: static;
+    margin-bottom: 20px;
+    min-height: auto;
+  }
 `;
 
 const Jumbotron = styled.div`
@@ -193,6 +200,23 @@ const Jumbotron = styled.div`
       transparent
     );
   }
+
+  @media (max-width: 900px) {
+    position: relative;
+
+    img {
+      object-position: center;
+    }
+
+    .gradient-left {
+      display: none;
+    }
+
+    .gradient-bottom {
+      bottom: 0;
+      height: 100px;
+    }
+  }
 `;
 
 const ImageSlider = styled.div`
@@ -201,6 +225,11 @@ const ImageSlider = styled.div`
   right: 100px;
   bottom: 200px;
   z-index: 9999;
+
+  @media (max-width: 900px) {
+    position: relative;
+    display: none;
+  }
 `;
 
 const ImageListWrap = styled.div`

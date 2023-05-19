@@ -57,4 +57,13 @@ const Wrap = styled.div`
       }
     }
   }
+
+  @media (max-width: 768px) {
+    h3 {
+      font-size: 16px;
+    }
+    .genre-list .genre {
+      font-size: 12px;
+    }
+  }
 `;

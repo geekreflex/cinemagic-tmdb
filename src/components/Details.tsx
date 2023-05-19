@@ -24,6 +24,9 @@ const Details = ({ movie }: DetailsProps) => {
 
   return (
     <Wrap>
+      {images?.backdrops && (
+        <MoviesImages images={images} backdrop={movie.backdrop_path} />
+      )}
       <Main>
         <Container>
           <Content>
@@ -52,10 +55,8 @@ const Details = ({ movie }: DetailsProps) => {
           </Content>
         </Container>
       </Main>
-      {images?.backdrops && (
-        <MoviesImages images={images} backdrop={movie.backdrop_path} />
-      )}
-      <MovieVideos videos={movie.videos} />
+
+      {/* <MovieVideos videos={movie.videos} /> */}
     </Wrap>
   );
 };
@@ -68,16 +69,18 @@ const Wrap = styled.div`
 
 const Main = styled.div`
   position: relative;
-  min-height: 120vh;
   z-index: 999;
+  margin-top: 200px;
+
+  @media (max-width: 900px) {
+    margin-top: 0;
+  }
 `;
 
 const Content = styled.div`
-  top: 200px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  position: relative;
 
   .sub-group {
     display: flex;
@@ -99,6 +102,7 @@ const Content = styled.div`
     font-size: 16px;
     margin-bottom: 10px;
     font-weight: 600;
+    max-width: 100%;
   }
 
   .rating {
@@ -120,4 +124,13 @@ const MovieTitle = styled.div`
   width: 600px;
   line-height: 1;
   margin-bottom: 20px;
+  max-width: 100%;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    font-size: 40px;
+    width: 100%;
+  }
 `;

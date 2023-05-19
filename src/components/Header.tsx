@@ -60,7 +60,7 @@ const Wrap = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 9998;
+  z-index: 999998;
 `;
 
 const Main = styled.div`
