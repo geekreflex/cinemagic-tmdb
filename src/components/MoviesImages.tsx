@@ -87,7 +87,7 @@ const MoviesImages = ({
     setIsAnimating(true);
   };
 
-  const onAdnimtionComplete = () => {
+  const onAnimationComplete = () => {
     setIsAnimating(false);
   };
 
@@ -102,43 +102,45 @@ const MoviesImages = ({
           transition={{ duration: 0.5 }}
           onLoad={onImgLoad}
           style={{ opacity: isAnimating ? 0 : 1 }}
-          onAnimationComplete={onAdnimtionComplete}
+          onAnimationComplete={onAnimationComplete}
           src={currentImg}
         />
         <div className="gradient-left"></div>
         <div className="gradient-bottom"></div>
       </Jumbotron>
-      <ImageSlider>
-        <Arrow>
-          {showLeftArrow && (
-            <button onClick={onScrollLeft} className="left-arrow">
-              <IoChevronBack />
-            </button>
-          )}
-          {showRightArrow && (
-            <button onClick={onScrollRight} className="right-arrow">
-              <IoChevronForward />
-            </button>
-          )}
-        </Arrow>
-        <ImageListWrap ref={containerRef}>
-          <div className="image-list">
-            {images?.backdrops?.map((image, index) => (
-              <motion.img
-                ref={refs.current[index]}
-                className="image"
-                onClick={() => onSelect(image.file_path, index)}
-                key={image.file_path}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                src={url + image.file_path}
-              />
-            ))}
-          </div>
-        </ImageListWrap>
-      </ImageSlider>
+      {images.backdrops.length > 1 && (
+        <ImageSlider>
+          <Arrow>
+            {showLeftArrow && (
+              <button onClick={onScrollLeft} className="left-arrow">
+                <IoChevronBack />
+              </button>
+            )}
+            {showRightArrow && (
+              <button onClick={onScrollRight} className="right-arrow">
+                <IoChevronForward />
+              </button>
+            )}
+          </Arrow>
+          <ImageListWrap ref={containerRef}>
+            <div className="image-list">
+              {images?.backdrops?.map((image, index) => (
+                <motion.img
+                  ref={refs.current[index]}
+                  className="image"
+                  onClick={() => onSelect(image.file_path, index)}
+                  key={image.file_path}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  src={url + image.file_path}
+                />
+              ))}
+            </div>
+          </ImageListWrap>
+        </ImageSlider>
+      )}
     </Wrap>
   );
 };
@@ -146,7 +148,6 @@ const MoviesImages = ({
 export default MoviesImages;
 
 const Wrap = styled.div`
-  min-height: 100vh;
   width: 100%;
   margin-bottom: 100px;
   top: 0;
@@ -166,11 +167,16 @@ const Jumbotron = styled.div`
   display: flex;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 100vh;
+
+  @media (max-width: 900px) {
+    min-height: 200px;
+    height: auto;
+  }
 
   img {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     object-fit: cover;
   }
 

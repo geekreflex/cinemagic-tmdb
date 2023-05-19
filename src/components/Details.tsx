@@ -77,6 +77,10 @@ const Main = styled.div`
     margin-top: 0;
     margin-bottom: 100px;
   }
+
+  @media (max-width: 600px) {
+    margin-bottom: 40px;
+  }
 `;
 
 const Content = styled.div`

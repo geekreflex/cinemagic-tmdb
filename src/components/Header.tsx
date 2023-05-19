@@ -74,6 +74,10 @@ const Wrap = styled.div`
   left: 0;
   width: 100%;
   z-index: 999998;
+
+  @media (max-width: 900px) {
+    position: static;
+  }
 `;
 
 const Main = styled.div`
@@ -134,4 +138,21 @@ const LinkList = styled.div`
       display: block;
     }
   }
+`;
+
+const Min = styled.div`
+  display: flex;
+  height: 70px;
+  align-items: center;
+  background-color: rgb(24, 24, 24, 0.19);
+  /* border-bottom: 1px solid #242424; */
+  transition: all 300ms;
+  /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999998;
 `;
