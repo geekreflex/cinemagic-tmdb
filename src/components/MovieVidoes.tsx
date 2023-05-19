@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { IMovieVideo } from '../types/movie';
 import { Container, Title } from '../styles/gobalStyles';
-import { IoPlayCircle } from 'react-icons/io5';
+import { IoHeart, IoHeartOutline, IoPlayCircle } from 'react-icons/io5';
 
 const MovieVideos = ({ videos }: { videos: IMovieVideo }) => {
   const filteredVideos = videos.results.filter(
@@ -26,17 +26,20 @@ const MovieVideos = ({ videos }: { videos: IMovieVideo }) => {
 
   return (
     <Wrap>
-      <Container>
-        <Main>
-          <button>
-            Watch Now
-            <span>
-              <IoPlayCircle />
-            </span>
-          </button>
-          <button>Add to Favorites</button>
-        </Main>
-      </Container>
+      <Main>
+        <button className="watch-now btn">
+          Watch Now
+          <span>
+            <IoPlayCircle />
+          </span>
+        </button>
+        <button className="fav btn">
+          Favorite
+          <span>
+            <IoHeartOutline />
+          </span>
+        </button>
+      </Main>
     </Wrap>
   );
 };
@@ -48,15 +51,61 @@ const Wrap = styled.div`
   flex-direction: column;
   position: relative;
   width: 100%;
+  z-index: 9999;
+  background-color: #111;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px;
 `;
 
 const Main = styled.div`
   width: 100%;
-`;
-
-const VideoList = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
-  flex-wrap: wrap;
-  width: 100%;
+
+  button {
+    width: 200px;
+    border: none;
+    outline: none;
+    padding: 13px 20px;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    border: 1px solid rgb(153, 22, 5);
+    span {
+      font-size: 24px;
+      display: flex;
+    }
+  }
+
+  .watch-now {
+  }
+
+  .fav {
+    background-color: transparent;
+    border: 1px solid #fff;
+  }
+
+  @media (max-width: 768px) {
+    button {
+      span {
+        font-size: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 370px) {
+    flex-direction: column;
+    gap: 10px;
+
+    button {
+      width: 100%;
+    }
+  }
 `;

@@ -56,7 +56,7 @@ const Details = ({ movie }: DetailsProps) => {
         </Container>
       </Main>
 
-      {/* <MovieVideos videos={movie.videos} /> */}
+      <MovieVideos videos={movie.videos} />
     </Wrap>
   );
 };
@@ -70,10 +70,12 @@ const Wrap = styled.div`
 const Main = styled.div`
   position: relative;
   z-index: 999;
-  margin-top: 200px;
+  margin-top: 150px;
+  margin-bottom: 200px;
 
   @media (max-width: 900px) {
     margin-top: 0;
+    margin-bottom: 100px;
   }
 `;
 
